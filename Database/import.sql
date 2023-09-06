@@ -1,3 +1,17 @@
+INSERT INTO rating (id, user_id, counter, sum)
+VALUES (DEFAULT, 1, DEFAULT, DEFAULT);
+
+INSERT INTO role (id, name)
+VALUES (DEFAULT, 'admin'),
+       (DEFAULT, 'customer');
+
+INSERT INTO district (id, name)
+VALUES (DEFAULT, 'admin'),
+       (DEFAULT, 'customer');
+
+INSERT INTO image (id, data, status)
+VALUES (DEFAULT, null, 'A');
+
 INSERT INTO district (id, name)
 VALUES (DEFAULT, 'Vanalinn'),
        (DEFAULT, 'Kesklinn'),
@@ -8,8 +22,4 @@ VALUES (DEFAULT, 'Vanalinn'),
        (DEFAULT, 'Nõmme'),
        (DEFAULT, 'Õismäe'),
        (DEFAULT, 'Põhja-Tallinn');
-
-INSERT INTO role (id, name)
-VALUES (DEFAULT, 'admin'),
-       (DEFAULT, 'customer');
 
