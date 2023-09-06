@@ -1,7 +1,17 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-09-06 06:29:39.363
+-- Last modification date: 2023-09-06 08:30:43.146
 
 -- tables
+-- Table: contact
+CREATE TABLE contact (
+    id serial  NOT NULL,
+    user_id int  NOT NULL,
+    image_id int  NULL,
+    firstname varchar(255)  NOT NULL,
+    lastname varchar(255)  NOT NULL,
+    CONSTRAINT contact_pk PRIMARY KEY (id)
+);
+
 -- Table: district
 CREATE TABLE district (
     id serial  NOT NULL,
@@ -22,7 +32,7 @@ CREATE TABLE event (
 CREATE TABLE food_group (
     id serial  NOT NULL,
     name varchar(255)  NOT NULL,
-    image_id int  NOT NULL,
+    image_id int  NULL,
     CONSTRAINT food_group_pk PRIMARY KEY (id)
 );
 
@@ -30,37 +40,42 @@ CREATE TABLE food_group (
 CREATE TABLE image (
     id serial  NOT NULL,
     data bytea  NOT NULL,
+    status char(1)  NOT NULL,
     CONSTRAINT image_pk PRIMARY KEY (id)
 );
 
 -- Table: location
 CREATE TABLE location (
     id serial  NOT NULL,
+    user_id int  NOT NULL,
     address varchar(255)  NOT NULL,
     district_id int  NOT NULL,
+    longitude decimal(8,6)  NULL,
+    latitude decimal(8,6)  NULL,
     CONSTRAINT location_pk PRIMARY KEY (id)
 );
 
 -- Table: offer
 CREATE TABLE offer (
     id serial  NOT NULL,
-    time time  NOT NULL,
+    user_id int  NOT NULL,
+    time varchar(255)  NOT NULL,
     date date  NOT NULL,
-    price money  NOT NULL,
-    seats int  NOT NULL,
-    name int  NOT NULL,
+    price decimal(4,2)  NOT NULL,
+    total_portions int  NOT NULL,
+    name varchar(255)  NOT NULL,
     description varchar(255)  NOT NULL,
     food_group_id int  NOT NULL,
     status char(1)  NOT NULL,
-    user_id int  NOT NULL,
-    rating_id int  NOT NULL,
     CONSTRAINT offer_pk PRIMARY KEY (id)
 );
 
 -- Table: rating
 CREATE TABLE rating (
     id serial  NOT NULL,
-    "level" int  NOT NULL,
+    user_id int  NOT NULL,
+    counter int  NOT NULL DEFAULT 0,
+    sum int  NOT NULL DEFAULT 0,
     CONSTRAINT rating_pk PRIMARY KEY (id)
 );
 
@@ -74,14 +89,11 @@ CREATE TABLE role (
 -- Table: user
 CREATE TABLE "user" (
     id serial  NOT NULL,
-    first_name varchar(255)  NOT NULL,
-    last_name varchar(255)  NOT NULL,
-    password varchar(255)  NOT NULL,
+    role_id int  NULL,
+    rating decimal(2,1)  NOT NULL,
     status char(1)  NOT NULL,
-    role_id int  NOT NULL,
-    image_id int  NOT NULL,
-    location_id int  NOT NULL,
-    e_mail varchar(255)  NOT NULL,
+    email varchar(255)  NOT NULL,
+    password varchar(255)  NOT NULL,
     CONSTRAINT user_pk PRIMARY KEY (id)
 );
 
@@ -102,26 +114,26 @@ ALTER TABLE event ADD CONSTRAINT Table_10_offer
     INITIALLY IMMEDIATE
 ;
 
--- Reference: User_image (table: user)
-ALTER TABLE "user" ADD CONSTRAINT User_image
+-- Reference: User_role (table: user)
+ALTER TABLE "user" ADD CONSTRAINT User_role
+    FOREIGN KEY (role_id)
+    REFERENCES role (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: contact_image (table: contact)
+ALTER TABLE contact ADD CONSTRAINT contact_image
     FOREIGN KEY (image_id)
     REFERENCES image (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
--- Reference: User_location (table: user)
-ALTER TABLE "user" ADD CONSTRAINT User_location
-    FOREIGN KEY (location_id)
-    REFERENCES location (id)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: User_role (table: user)
-ALTER TABLE "user" ADD CONSTRAINT User_role
-    FOREIGN KEY (role_id)
-    REFERENCES role (id)  
+-- Reference: contact_user (table: contact)
+ALTER TABLE contact ADD CONSTRAINT contact_user
+    FOREIGN KEY (user_id)
+    REFERENCES "user" (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -142,6 +154,14 @@ ALTER TABLE location ADD CONSTRAINT location_district
     INITIALLY IMMEDIATE
 ;
 
+-- Reference: location_user (table: location)
+ALTER TABLE location ADD CONSTRAINT location_user
+    FOREIGN KEY (user_id)
+    REFERENCES "user" (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
 -- Reference: offer_food_group (table: offer)
 ALTER TABLE offer ADD CONSTRAINT offer_food_group
     FOREIGN KEY (food_group_id)
@@ -150,16 +170,16 @@ ALTER TABLE offer ADD CONSTRAINT offer_food_group
     INITIALLY IMMEDIATE
 ;
 
--- Reference: offer_rating (table: offer)
-ALTER TABLE offer ADD CONSTRAINT offer_rating
-    FOREIGN KEY (rating_id)
-    REFERENCES rating (id)  
+-- Reference: offer_user (table: offer)
+ALTER TABLE offer ADD CONSTRAINT offer_user
+    FOREIGN KEY (user_id)
+    REFERENCES "user" (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
--- Reference: offer_user (table: offer)
-ALTER TABLE offer ADD CONSTRAINT offer_user
+-- Reference: rating_user (table: rating)
+ALTER TABLE rating ADD CONSTRAINT rating_user
     FOREIGN KEY (user_id)
     REFERENCES "user" (id)  
     NOT DEFERRABLE 
