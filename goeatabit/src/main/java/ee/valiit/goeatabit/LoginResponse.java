@@ -1,13 +1,17 @@
 package ee.valiit.goeatabit;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 /**
  * DTO for {@link User}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginResponse implements Serializable {
-    Integer id;
+    private Integer userId;
 }

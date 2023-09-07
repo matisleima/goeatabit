@@ -19,3 +19,17 @@ v
 Fgoeatabit/src/main/java/ee/valiit/goeatabit/business/LoginService.java,8\0\80d76f700e17fa469aaa0d9b09498ebc931d411e
 u
 Egoeatabit/src/main/java/ee/valiit/goeatabit/business/UserService.java,9\4\94843e1befff9b9712459c0c96bfb5f026e463a6
+y
+Igoeatabit/src/main/java/ee/valiit/goeatabit/domain/BusinessException.java,2\3\23084bc85c138778ce07b08930d23e64f1c0aaa1
+o
+?goeatabit/src/main/java/ee/valiit/goeatabit/business/Error.java,8\5\85e14feada4e4714b9a5060fa5ca9aeb3bd625ef
+e
+5goeatabit/src/main/java/ee/valiit/goeatabit/Role.java,7\6\766fac04a44ec09d02e61767802536cd42f52bb3
+p
+@goeatabit/src/main/java/ee/valiit/goeatabit/business/Status.java,8\8\88094fb7a27b693becc770ce3f3622dc443b68f3
+e
+5goeatabit/src/main/java/ee/valiit/goeatabit/User.java,c\1\c1f7b92d56cb117fac2835354c6def284771dd5b
+o
+?goeatabit/src/main/java/ee/valiit/goeatabit/UserRepository.java,6\a\6aa3b05a3f51d44d90920132af75bab3a4cfaff4
+y
+Igoeatabit/src/main/java/ee/valiit/goeatabit/domain/ValidationService.java,b\f\bfa11dbb868004d4df36a38c224f9663ba536fb7
