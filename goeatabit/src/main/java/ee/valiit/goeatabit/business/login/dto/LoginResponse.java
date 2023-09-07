@@ -1,5 +1,6 @@
-package ee.valiit.goeatabit;
+package ee.valiit.goeatabit.business.login.dto;
 
+import ee.valiit.goeatabit.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

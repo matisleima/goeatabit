@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.domain;
+package ee.valiit.goeatabit.infrastructure.exception;
 
 import lombok.Data;
 

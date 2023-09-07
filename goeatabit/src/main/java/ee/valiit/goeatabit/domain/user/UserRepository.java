@@ -1,5 +1,6 @@
-package ee.valiit.goeatabit;
+package ee.valiit.goeatabit.domain.user;
 
+import ee.valiit.goeatabit.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

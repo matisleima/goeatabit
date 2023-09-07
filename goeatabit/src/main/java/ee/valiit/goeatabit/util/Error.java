@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business;
+package ee.valiit.goeatabit.util;
 
 import lombok.Getter;
 

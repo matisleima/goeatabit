@@ -1,5 +1,7 @@
-package ee.valiit.goeatabit;
+package ee.valiit.goeatabit.domain.user;
 
+import ee.valiit.goeatabit.business.login.dto.LoginResponse;
+import ee.valiit.goeatabit.domain.user.User;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)

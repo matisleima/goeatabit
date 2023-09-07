@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit;
+package ee.valiit.goeatabit.domain.role;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

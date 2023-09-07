@@ -1,9 +1,10 @@
 package ee.valiit.goeatabit.business;
 
 
-import ee.valiit.goeatabit.User;
-import ee.valiit.goeatabit.UserRepository;
-import ee.valiit.goeatabit.domain.ValidationService;
+import ee.valiit.goeatabit.domain.user.User;
+import ee.valiit.goeatabit.domain.user.UserRepository;
+import ee.valiit.goeatabit.validation.ValidationService;
+import ee.valiit.goeatabit.util.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,11 @@
-package ee.valiit.goeatabit.domain;
+package ee.valiit.goeatabit.validation;
 
-import ee.valiit.goeatabit.User;
+import ee.valiit.goeatabit.domain.user.User;
+import ee.valiit.goeatabit.infrastructure.exception.BusinessException;
 
 import java.util.Optional;
 
-import static ee.valiit.goeatabit.business.Error.INCORRECT_CREDENTIALS;
+import static ee.valiit.goeatabit.util.Error.INCORRECT_CREDENTIALS;
 
 public class ValidationService {
     public static User getValidUser(Optional<User> optionalUser) {

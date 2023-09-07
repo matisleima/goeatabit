@@ -1,8 +1,9 @@
-package ee.valiit.goeatabit.business;
+package ee.valiit.goeatabit.business.login;
 
-import ee.valiit.goeatabit.LoginResponse;
-import ee.valiit.goeatabit.User;
-import ee.valiit.goeatabit.UserMapper;
+import ee.valiit.goeatabit.domain.user.User;
+import ee.valiit.goeatabit.domain.user.UserMapper;
+import ee.valiit.goeatabit.business.UserService;
+import ee.valiit.goeatabit.business.login.dto.LoginResponse;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
