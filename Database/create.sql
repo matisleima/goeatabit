@@ -3,7 +3,7 @@
 
 -- tables
 -- Table: contact
-CREATE TABLE contact (
+CREATE TABLE eat.contact (
     id serial  NOT NULL,
     user_id int  NOT NULL,
     image_id int  NULL,
@@ -13,14 +13,14 @@ CREATE TABLE contact (
 );
 
 -- Table: district
-CREATE TABLE district (
+CREATE TABLE eat.district (
     id serial  NOT NULL,
     name varchar(255)  NOT NULL,
     CONSTRAINT district_pk PRIMARY KEY (id)
 );
 
 -- Table: event
-CREATE TABLE event (
+CREATE TABLE eat.event (
     id serial  NOT NULL,
     user_id int  NOT NULL,
     offer_id int  NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE event (
 );
 
 -- Table: food_group
-CREATE TABLE food_group (
+CREATE TABLE eat.food_group (
     id serial  NOT NULL,
     name varchar(255)  NOT NULL,
     image_id int  NULL,
@@ -37,7 +37,7 @@ CREATE TABLE food_group (
 );
 
 -- Table: image
-CREATE TABLE image (
+CREATE TABLE eat.image (
     id serial  NOT NULL,
     data bytea  NOT NULL,
     status char(1)  NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE image (
 );
 
 -- Table: location
-CREATE TABLE location (
+CREATE TABLE eat.location (
     id serial  NOT NULL,
     user_id int  NOT NULL,
     address varchar(255)  NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE location (
 );
 
 -- Table: offer
-CREATE TABLE offer (
+CREATE TABLE eat.offer (
     id serial  NOT NULL,
     user_id int  NOT NULL,
     time varchar(255)  NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE offer (
 );
 
 -- Table: rating
-CREATE TABLE rating (
+CREATE TABLE eat.rating (
     id serial  NOT NULL,
     user_id int  NOT NULL,
     counter int  NOT NULL DEFAULT 0,
@@ -80,14 +80,14 @@ CREATE TABLE rating (
 );
 
 -- Table: role
-CREATE TABLE role (
+CREATE TABLE eat.role (
     id serial  NOT NULL,
     name varchar(255)  NOT NULL,
     CONSTRAINT role_pk PRIMARY KEY (id)
 );
 
 -- Table: user
-CREATE TABLE "user" (
+CREATE TABLE eat."user" (
     id serial  NOT NULL,
     role_id int  NULL,
     rating decimal(2,1)  NOT NULL,
@@ -99,89 +99,89 @@ CREATE TABLE "user" (
 
 -- foreign keys
 -- Reference: Table_10_User (table: event)
-ALTER TABLE event ADD CONSTRAINT Table_10_User
+ALTER TABLE eat.event ADD CONSTRAINT Table_10_User
     FOREIGN KEY (user_id)
-    REFERENCES "user" (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat."user" (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Table_10_offer (table: event)
-ALTER TABLE event ADD CONSTRAINT Table_10_offer
+ALTER TABLE eat.event ADD CONSTRAINT Table_10_offer
     FOREIGN KEY (offer_id)
-    REFERENCES offer (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat.offer (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: User_role (table: user)
-ALTER TABLE "user" ADD CONSTRAINT User_role
+ALTER TABLE eat."user" ADD CONSTRAINT User_role
     FOREIGN KEY (role_id)
-    REFERENCES role (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat.role (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: contact_image (table: contact)
-ALTER TABLE contact ADD CONSTRAINT contact_image
+ALTER TABLE eat.contact ADD CONSTRAINT contact_image
     FOREIGN KEY (image_id)
-    REFERENCES image (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat.image (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: contact_user (table: contact)
-ALTER TABLE contact ADD CONSTRAINT contact_user
+ALTER TABLE eat.contact ADD CONSTRAINT contact_user
     FOREIGN KEY (user_id)
-    REFERENCES "user" (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat."user" (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: food_group_image (table: food_group)
-ALTER TABLE food_group ADD CONSTRAINT food_group_image
+ALTER TABLE eat.food_group ADD CONSTRAINT food_group_image
     FOREIGN KEY (image_id)
-    REFERENCES image (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat.image (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: location_district (table: location)
-ALTER TABLE location ADD CONSTRAINT location_district
+ALTER TABLE eat.location ADD CONSTRAINT location_district
     FOREIGN KEY (district_id)
-    REFERENCES district (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat.district (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: location_user (table: location)
-ALTER TABLE location ADD CONSTRAINT location_user
+ALTER TABLE eat.location ADD CONSTRAINT location_user
     FOREIGN KEY (user_id)
-    REFERENCES "user" (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat."user" (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: offer_food_group (table: offer)
-ALTER TABLE offer ADD CONSTRAINT offer_food_group
+ALTER TABLE eat.offer ADD CONSTRAINT offer_food_group
     FOREIGN KEY (food_group_id)
-    REFERENCES food_group (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat.food_group (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: offer_user (table: offer)
-ALTER TABLE offer ADD CONSTRAINT offer_user
+ALTER TABLE eat.offer ADD CONSTRAINT offer_user
     FOREIGN KEY (user_id)
-    REFERENCES "user" (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat."user" (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: rating_user (table: rating)
-ALTER TABLE rating ADD CONSTRAINT rating_user
+ALTER TABLE eat.rating ADD CONSTRAINT rating_user
     FOREIGN KEY (user_id)
-    REFERENCES "user" (id)  
+    REFERENCES eat."user" (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
