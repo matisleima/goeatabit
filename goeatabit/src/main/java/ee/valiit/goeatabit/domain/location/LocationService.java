@@ -12,8 +12,12 @@ public class LocationService {
 
     @Resource
     private LocationMapper locationMapper;
+
+    @Resource
+    private LocationRepository locationRepository;
     public void saveLocation(SignUpRequest signUpRequest, User savedUser) {
         Location location = locationMapper.toLocation(signUpRequest);
         location.setUser(savedUser);
+        locationRepository.save(location);
     }
 }
