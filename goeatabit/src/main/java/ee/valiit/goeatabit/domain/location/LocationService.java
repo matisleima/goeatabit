@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.signup;
+package ee.valiit.goeatabit.domain.location;
 
 import ee.valiit.goeatabit.business.signup.dto.SignUpRequest;
 import ee.valiit.goeatabit.domain.location.Location;

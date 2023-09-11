@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.signup;
+package ee.valiit.goeatabit.domain.role;
 
 import ee.valiit.goeatabit.domain.role.Role;
 import ee.valiit.goeatabit.domain.role.RoleRepository;

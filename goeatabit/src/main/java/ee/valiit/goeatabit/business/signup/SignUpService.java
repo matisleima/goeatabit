@@ -4,8 +4,10 @@ import ee.valiit.goeatabit.business.signup.dto.SignUpRequest;
 import ee.valiit.goeatabit.domain.contact.ContactService;
 import ee.valiit.goeatabit.domain.image.Image;
 import ee.valiit.goeatabit.domain.image.ImageService;
+import ee.valiit.goeatabit.domain.location.LocationService;
 import ee.valiit.goeatabit.domain.rating.RatingService;
 import ee.valiit.goeatabit.domain.role.Role;
+import ee.valiit.goeatabit.domain.role.RoleService;
 import ee.valiit.goeatabit.domain.user.User;
 import ee.valiit.goeatabit.domain.user.UserService;
 import jakarta.annotation.Resource;
@@ -28,7 +30,7 @@ public class SignUpService {
     @Resource
     private LocationService locationService;
 
-    public Integer signUp(SignUpRequest signUpRequest) {
+    public void signUp(SignUpRequest signUpRequest) {
         userService.confirmUserAvailability(signUpRequest.getEmail());
 
         String roleName = "user";
@@ -39,6 +41,5 @@ public class SignUpService {
         Image savedImage = imageService.saveImageData(signUpRequest);
         contactService.saveContact(signUpRequest, savedImage, savedUser);
         locationService.saveLocation(signUpRequest, savedUser);
-        return savedUser.getId();
     }
 }
