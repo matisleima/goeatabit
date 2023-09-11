@@ -1,5 +1,7 @@
 package ee.valiit.goeatabit.domain.location;
 
+import ee.valiit.goeatabit.business.meal.Offer;
+import ee.valiit.goeatabit.business.meal.OfferDto;
 import ee.valiit.goeatabit.business.signup.dto.SignUpRequest;
 import org.mapstruct.*;
 
@@ -9,4 +11,7 @@ public interface LocationMapper {
     @Mapping(source = "address", target = "address")
     Location toLocation(SignUpRequest signUpRequest);
 
+    @Mapping(source = "district.id", target = "districtId")
+    @Mapping(source = "address", target = "address")
+    OfferDto toOfferDto(Location location);
 }

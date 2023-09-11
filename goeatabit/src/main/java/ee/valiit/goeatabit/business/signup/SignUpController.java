@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SignUpController {
 
-    @Resource SignUpService signUpService;
+    @Resource
+    private SignUpService signUpService;
 
     @PostMapping("/sign-up")
     public void signUp(@RequestBody SignUpRequest signUpRequest) {
