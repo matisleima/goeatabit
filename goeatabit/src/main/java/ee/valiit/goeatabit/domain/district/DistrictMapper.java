@@ -1,5 +1,6 @@
-package ee.valiit.goeatabit.business.district;
+package ee.valiit.goeatabit.domain.district;
 
+import ee.valiit.goeatabit.business.district.dto.DistrictDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

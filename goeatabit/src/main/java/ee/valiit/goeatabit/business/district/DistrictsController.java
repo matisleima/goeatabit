@@ -1,5 +1,6 @@
 package ee.valiit.goeatabit.business.district;
 
+import ee.valiit.goeatabit.business.district.dto.DistrictDto;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

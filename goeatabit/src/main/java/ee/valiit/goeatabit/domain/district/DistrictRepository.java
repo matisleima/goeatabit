@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.district;
+package ee.valiit.goeatabit.domain.district;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

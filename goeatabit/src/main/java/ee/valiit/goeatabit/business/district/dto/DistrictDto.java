@@ -1,5 +1,6 @@
-package ee.valiit.goeatabit.business.district;
+package ee.valiit.goeatabit.business.district.dto;
 
+import ee.valiit.goeatabit.domain.district.District;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Value;

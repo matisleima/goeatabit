@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.district;
+package ee.valiit.goeatabit.domain.district;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
