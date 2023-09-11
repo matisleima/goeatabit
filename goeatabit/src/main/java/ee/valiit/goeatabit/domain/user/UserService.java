@@ -33,4 +33,9 @@ public class UserService {
 
         //Integer id = userRepository.save(user).getId();
     }
+
+    public void confirmUserAvailability(String email) {
+        boolean userEmailExists = userRepository.userExistsBy(email);
+        ValidationService.validateEmailIsAvailable(userEmailExists);
+    }
 }

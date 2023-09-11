@@ -25,9 +25,12 @@ public class SignUpService {
     private LocationService locationService;
 
     public void signUp(SignUpRequest signUpRequest) {
+        userService.confirmUserAvailability(signUpRequest.getEmail());
+
         //pane default kasutaja roleId muutujasse
         String roleName = "user";
         Role role = roleService.getRole(roleName);
+
 
         //salvesta roleId ning email ja password DTOst USER tabelisse
 
