@@ -17,7 +17,7 @@ public interface UserMapper {
     @Mapping(source = "email", target = "email")
     @Mapping(source = "password", target = "password")
     @Mapping(constant = "0.0", target = "rating")
-    User toCredentials(SignUpRequest signUpRequest);
+    User toUser(SignUpRequest signUpRequest);
 
     @Mapping(source = "imageData", target = "data")
     Image toImage(SignUpRequest signUpRequest);

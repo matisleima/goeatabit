@@ -10,7 +10,8 @@ public class RoleService {
 
     @Resource
     private RoleRepository roleRepository;
-    public Role getRoleId(String roleName) {
-        return roleRepository.getRoleIdBy(roleName);
+    public Role getRole(String roleName) {
+
+        return roleRepository.getRoleBy(roleName);
     }
 }

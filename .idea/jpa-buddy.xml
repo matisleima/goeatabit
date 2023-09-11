@@ -3,7 +3,7 @@
   <component name="JpaBuddyIdeaProjectConfig" newRepositoryParent="org.springframework.data.jpa.repository.JpaRepository">
     <option name="defaultUnitInitialized" value="true" />
     <option name="renamerInitialized" value="true" />
-    <option name="reverseEngineeringLastDbConnectionId" value="e759da13-c933-454c-a46b-f423b78e10aa__postgres_public" />
+    <option name="reverseEngineeringLastDbConnectionId" value="e759da13-c933-454c-a46b-f423b78e10aa__postgres_eat" />
     <option name="reLastEntityCreationPackage" value="goeatabit/src/main/java/ee/valiit/goeatabit" />
   </component>
 </project>
