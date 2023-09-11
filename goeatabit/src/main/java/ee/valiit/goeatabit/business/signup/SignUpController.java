@@ -12,7 +12,8 @@ public class SignUpController {
     @Resource SignUpService signUpService;
 
     @PostMapping("/sign-up")
-    public void signUp(@RequestParam SignUpRequest signUpRequest) {
-        signUpService.signUp(signUpRequest);
+    public Integer signUp(@RequestParam SignUpRequest signUpRequest) {
+
+        return signUpService.signUp(signUpRequest);
     }
 }

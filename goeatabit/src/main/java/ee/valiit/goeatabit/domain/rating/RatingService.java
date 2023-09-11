@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.signup;
+package ee.valiit.goeatabit.domain.rating;
 
 import ee.valiit.goeatabit.domain.rating.Rating;
 import ee.valiit.goeatabit.domain.rating.RatingRepository;
