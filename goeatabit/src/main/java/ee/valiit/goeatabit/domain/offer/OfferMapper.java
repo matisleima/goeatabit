@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.meal;
+package ee.valiit.goeatabit.domain.offer;
 
 import org.mapstruct.*;
 
@@ -19,6 +19,7 @@ public interface OfferMapper {
     @Mapping(source = "description", target = "description")
     @Mapping(source = "foodGroup.id", target = "foodGroupId")
     @Mapping(source = "status", target = "offerStatus")
+
     OfferDto toOfferDto(Offer offer);
 
     List<OfferDto> toOfferDtos(List<Offer> offers);

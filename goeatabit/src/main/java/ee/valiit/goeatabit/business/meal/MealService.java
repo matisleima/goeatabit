@@ -1,7 +1,11 @@
 package ee.valiit.goeatabit.business.meal;
 
 import ee.valiit.goeatabit.domain.location.Location;
-import ee.valiit.goeatabit.domain.location.LocationMapper;
+import ee.valiit.goeatabit.domain.location.LocationService;
+import ee.valiit.goeatabit.domain.offer.Offer;
+import ee.valiit.goeatabit.domain.offer.OfferDto;
+import ee.valiit.goeatabit.domain.offer.OfferMapper;
+import ee.valiit.goeatabit.domain.offer.OfferService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -12,19 +16,23 @@ public class MealService {
     @Resource
     private OfferService offerService;
     @Resource
+    private LocationService locationService;
+    @Resource
     private OfferMapper offerMapper;
 
-    @Resource
-    private LocationMapper locationMapper;
-
     public List<OfferDto> getOffers() {
-        //todo: päri offer tabelist userId
-        //todo: päri userId järgi location tabelist address ja districtId
-        //todo: lisa need offerDto külge
-        locationMapper.toOfferDto(location);
-
-
         List<Offer> activeOffers = offerService.getActiveOffers();
-        return offerMapper.toOfferDtos(activeOffers);
+        List<OfferDto> offerDtos = offerMapper.toOfferDtos(activeOffers);
+        addLocationInfoToOfferDtos(offerDtos);
+        return offerDtos;
     }
+
+    private void addLocationInfoToOfferDtos(List<OfferDto> offerDtos) {
+        for (OfferDto offerDto : offerDtos) {
+            Location location = locationService.getLocationBy(offerDto.getUserId());
+            offerDto.setAddress(location.getAddress());
+            offerDto.setDistrictId(location.getDistrict().getId());
+        }
+    }
+
 }

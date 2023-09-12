@@ -1,5 +1,6 @@
-package ee.valiit.goeatabit.business.meal;
+package ee.valiit.goeatabit.domain.offer;
 
+import ee.valiit.goeatabit.domain.foodgroup.FoodGroup;
 import ee.valiit.goeatabit.domain.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

@@ -1,9 +1,6 @@
-package ee.valiit.goeatabit.business.meal;
+package ee.valiit.goeatabit.domain.foodgroup;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -15,6 +12,7 @@ import lombok.Setter;
 @Table(name = "food_group", schema = "eat")
 public class FoodGroup {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

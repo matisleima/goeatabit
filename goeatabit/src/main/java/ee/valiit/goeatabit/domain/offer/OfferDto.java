@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.meal;
+package ee.valiit.goeatabit.domain.offer;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

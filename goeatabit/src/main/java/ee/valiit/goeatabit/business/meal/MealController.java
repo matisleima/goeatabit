@@ -1,5 +1,6 @@
 package ee.valiit.goeatabit.business.meal;
 
+import ee.valiit.goeatabit.domain.offer.OfferDto;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,5 @@ public class MealController {
     public List<OfferDto> getOffers() {
         return mealService.getOffers();
     }
-
 
 }

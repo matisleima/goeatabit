@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.meal;
+package ee.valiit.goeatabit.domain.offer;
 
 import ee.valiit.goeatabit.util.Status;
 import jakarta.annotation.Resource;
@@ -8,10 +8,13 @@ import java.util.List;
 
 @Service
 public class OfferService {
-
     @Resource
     private OfferRepository offerRepository;
+
     public List<Offer> getActiveOffers() {
-        return offerRepository.getOffersBy(Status.ACTIVE.getLetter());
+        List<Offer> activeOffers = offerRepository.getOffersBy(Status.ACTIVE.getLetter());
+        return activeOffers;
     }
+
+
 }

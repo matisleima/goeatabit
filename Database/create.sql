@@ -59,7 +59,7 @@ CREATE TABLE eat.location (
 CREATE TABLE eat.offer (
     id serial  NOT NULL,
     user_id int  NOT NULL,
-    time varchar(255)  NOT NULL,
+    time int  NOT NULL,
     date date  NOT NULL,
     price decimal(4,2)  NOT NULL,
     total_portions int  NOT NULL,
