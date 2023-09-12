@@ -1,5 +1,7 @@
 package ee.valiit.goeatabit.business.meal;
 
+import ee.valiit.goeatabit.domain.contact.Contact;
+import ee.valiit.goeatabit.domain.contact.ContactService;
 import ee.valiit.goeatabit.domain.location.Location;
 import ee.valiit.goeatabit.domain.location.LocationService;
 import ee.valiit.goeatabit.domain.offer.Offer;
@@ -17,6 +19,9 @@ public class MealService {
     private OfferService offerService;
     @Resource
     private LocationService locationService;
+
+    @Resource
+    private ContactService contactService;
     @Resource
     private OfferMapper offerMapper;
 
@@ -24,6 +29,7 @@ public class MealService {
         List<Offer> activeOffers = offerService.getActiveOffers();
         List<OfferDto> offerDtos = offerMapper.toOfferDtos(activeOffers);
         addLocationInfoToOfferDtos(offerDtos);
+        addContactInfoToOfferDtos(offerDtos);
         return offerDtos;
     }
 
@@ -32,6 +38,14 @@ public class MealService {
             Location location = locationService.getLocationBy(offerDto.getUserId());
             offerDto.setAddress(location.getAddress());
             offerDto.setDistrictId(location.getDistrict().getId());
+        }
+    }
+
+    private void addContactInfoToOfferDtos(List<OfferDto> offerDtos) {
+        for (OfferDto offerDto : offerDtos) {
+            Contact contact = contactService.getContactBy(offerDto.getUserId());
+            offerDto.setFirstName(contact.getFirstname());
+            offerDto.setLastName(contact.getLastname());
         }
     }
 

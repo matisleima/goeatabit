@@ -20,4 +20,8 @@ public class ContactService {
         contact.setImage(savedImage);
         contactRepository.save(contact);
     }
+
+    public Contact getContactBy(Integer userId) {
+        return contactRepository.getContactBy(userId);
+    }
 }

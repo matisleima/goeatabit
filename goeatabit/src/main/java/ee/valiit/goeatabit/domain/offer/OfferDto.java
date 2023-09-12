@@ -42,4 +42,9 @@ public class OfferDto implements Serializable {
     private String address;
     @NotNull
     private Integer districtId;
+    @NotNull
+    private String firstName;
+    @NotNull
+    private String lastName;
+
 }
