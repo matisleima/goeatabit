@@ -4,10 +4,7 @@ import ee.valiit.goeatabit.domain.contact.Contact;
 import ee.valiit.goeatabit.domain.contact.ContactService;
 import ee.valiit.goeatabit.domain.location.Location;
 import ee.valiit.goeatabit.domain.location.LocationService;
-import ee.valiit.goeatabit.domain.offer.Offer;
-import ee.valiit.goeatabit.domain.offer.OfferDto;
-import ee.valiit.goeatabit.domain.offer.OfferMapper;
-import ee.valiit.goeatabit.domain.offer.OfferService;
+import ee.valiit.goeatabit.domain.offer.*;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -49,4 +46,7 @@ public class MealService {
         }
     }
 
+    public void getFilteredOffers(OfferFilterDto offerFilterDto) {
+        offerService.getFilteredOffers(offerFilterDto);
+    }
 }

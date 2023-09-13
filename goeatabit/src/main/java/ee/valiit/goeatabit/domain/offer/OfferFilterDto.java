@@ -16,10 +16,8 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OfferDto implements Serializable {
-    private Integer offerId;
+public class OfferFilterDto implements Serializable {
     private Integer userId;
-    private BigDecimal userRating;
     @NotNull
     @Size(max = 255)
     private String time;
@@ -28,25 +26,9 @@ public class OfferDto implements Serializable {
     @NotNull
     private BigDecimal price;
     @NotNull
-    private Integer totalPortions;
-    @NotNull
-    @Size(max = 255)
-    private String offerName;
-    @NotNull
     @Size(max = 255)
     private String description;
     private Integer foodGroupId;
     @NotNull
-    private String offerStatus;
-
-    @NotNull
-    private String address;
-    @NotNull
-    private Integer districtId;
-
-    @NotNull
-    private String firstName;
-    @NotNull
-    private String lastName;
-
+    private String status;
 }

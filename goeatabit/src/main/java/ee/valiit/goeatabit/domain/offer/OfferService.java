@@ -17,4 +17,7 @@ public class OfferService {
     }
 
 
+    public void getFilteredOffers(OfferFilterDto offerFilterDto) {
+
+    }
 }
