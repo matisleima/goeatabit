@@ -32,7 +32,6 @@ CREATE TABLE eat.event (
 CREATE TABLE eat.food_group (
     id serial  NOT NULL,
     name varchar(255)  NOT NULL,
-    image_id int  NULL,
     CONSTRAINT food_group_pk PRIMARY KEY (id)
 );
 
@@ -41,6 +40,7 @@ CREATE TABLE eat.image (
     id serial  NOT NULL,
     data bytea  NOT NULL,
     status char(1)  NOT NULL,
+    food_group_id int NULL,
     CONSTRAINT image_pk PRIMARY KEY (id)
 );
 
@@ -136,12 +136,11 @@ ALTER TABLE eat.contact ADD CONSTRAINT contact_user
     REFERENCES eat."user" (id)
     NOT DEFERRABLE
     INITIALLY IMMEDIATE
-;
 
--- Reference: food_group_image (table: food_group)
-ALTER TABLE eat.food_group ADD CONSTRAINT food_group_image
-    FOREIGN KEY (image_id)
-    REFERENCES eat.image (id)
+;-- Reference: image_food_group (table: image)
+ALTER TABLE eat.image ADD CONSTRAINT image_food_group
+    FOREIGN KEY (food_group_id)
+    REFERENCES eat.food_group (id)
     NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
