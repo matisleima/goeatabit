@@ -2,9 +2,9 @@ INSERT INTO eat.role (id, name) VALUES (default, 'admin');
 INSERT INTO eat.role (id, name) VALUES (default, 'user');
 INSERT INTO eat.role (id, name) VALUES (default, 'moderator');
 
-INSERT INTO eat.image (id, data, status) VALUES (default, 'imagedata', 'A');
-INSERT INTO eat.image (id, data, status) VALUES (default, 'imagedata', 'A');
-INSERT INTO eat.image (id, data, status) VALUES (default, 'imagetada', 'A');
+INSERT INTO eat.image (id, data, food_group_id, status) VALUES (default, 'imagedata', default, 'A');
+INSERT INTO eat.image (id, data, food_group_id, status) VALUES (default, 'imagedata', default, 'A');
+INSERT INTO eat.image (id, data, food_group_id, status) VALUES (default, 'imagetada', default, 'A');
 
 INSERT INTO eat.district (id, name) VALUES (1, 'Vanalinn');
 INSERT INTO eat.district (id, name) VALUES (2, 'Kesklinn');
@@ -28,9 +28,9 @@ INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude
 INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 2, 'Vabaduse väljak 1', 2, null, null);
 INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 3, 'Sõpruse pst 2', 6, null, null);
 
-INSERT INTO eat.food_group (id, name, image_id) VALUES (DEFAULT, 'supp', null);
-INSERT INTO eat.food_group (id, name, image_id) VALUES (DEFAULT, 'puder', null);
-INSERT INTO eat.food_group (id, name, image_id) VALUES (DEFAULT, 'sushi', null);
+INSERT INTO eat.food_group (id, name) VALUES (DEFAULT, 'supp');
+INSERT INTO eat.food_group (id, name) VALUES (DEFAULT, 'puder');
+INSERT INTO eat.food_group (id, name) VALUES (DEFAULT, 'sushi');
 
 INSERT INTO eat.offer (id, user_id, time, date, price, total_portions, name, description, food_group_id, status)
 VALUES (DEFAULT, 3, 12, '2023-09-13', 5.00, 5, 'Peedisupp', 'Ülimaitsev peedisupp, kus peeti polegi!', 1, 'A')
@@ -38,4 +38,3 @@ INSERT INTO eat.offer (id, user_id, time, date, price, total_portions, name, des
 VALUES (DEFAULT, 3, 12, '2023-09-13', 4.00, 4, 'Kartulipuder', 'Megamaitsev kartulipuder', 2, 'A')
 INSERT INTO eat.offer (id, user_id, time, date, price, total_portions, name, description, food_group_id, status)
 VALUES (DEFAULT, 1, 12, '2023-09-13', 9.00, 2, 'Soolasushi', 'Väga halb sushi!', 3, 'A')
-

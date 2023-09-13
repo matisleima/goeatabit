@@ -12,4 +12,11 @@ public class ImageConverter {
         return image;
 
     }
+
+    public static String imageBytesToImageString(Image image) {
+        if (image == null) {
+            return "";
+        }
+        return new String(image.getData(), StandardCharsets.UTF_8);
+    }
 }

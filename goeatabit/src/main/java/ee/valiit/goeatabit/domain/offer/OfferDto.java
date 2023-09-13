@@ -47,4 +47,6 @@ public class OfferDto implements Serializable {
     @NotNull
     private String lastName;
 
+    private String imageString;
+
 }
