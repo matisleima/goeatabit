@@ -38,4 +38,3 @@ INSERT INTO eat.offer (id, user_id, time, date, price, total_portions, name, des
 VALUES (DEFAULT, 3, 12, '2023-09-13', 4.00, 4, 'Kartulipuder', 'Megamaitsev kartulipuder', 2, 'A')
 INSERT INTO eat.offer (id, user_id, time, date, price, total_portions, name, description, food_group_id, status)
 VALUES (DEFAULT, 1, 12, '2023-09-13', 9.00, 2, 'Soolasushi', 'Väga halb sushi!', 3, 'A')
-

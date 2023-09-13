@@ -1,5 +1,6 @@
 package ee.valiit.goeatabit.domain.image;
 
+import ee.valiit.goeatabit.domain.foodgroup.FoodGroup;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -22,5 +23,9 @@ public class Image {
     @NotNull
     @Column(name = "status", nullable = false, length = Integer.MAX_VALUE)
     private String status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "food_group_id")
+    private FoodGroup foodGroup;
 
 }
