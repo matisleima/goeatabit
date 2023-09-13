@@ -16,6 +16,9 @@ public class OfferService {
         return activeOffers;
     }
 
+    public void saveOffer(Offer offer) {
+        offerRepository.save(offer);
+    }
 
     public void getFilteredOffers(OfferFilterDto offerFilterDto) {
 

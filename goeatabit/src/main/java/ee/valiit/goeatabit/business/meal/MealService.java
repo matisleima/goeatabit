@@ -13,6 +13,7 @@ import ee.valiit.goeatabit.domain.offer.OfferService;
 import ee.valiit.goeatabit.util.ImageConverter;
 import ee.valiit.goeatabit.domain.offer.*;
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,6 +69,21 @@ public class MealService {
             String imageString = ImageConverter.imageBytesToImageString(image);
             offerDto.setImageString(imageString);
         }
+    }
+    @Transactional
+    public void addOffer(OfferDto request) {
+        Offer offer = createAndSaveOffer(request);
+    }
+
+    private Offer createAndSaveOffer(OfferDto request) {
+        Offer offer = createOffer(request);
+        offerService.saveOffer(offer);
+        return offer;
+    }
+
+    private Offer createOffer(OfferDto request) {
+        Offer offer = offerMapper.toOffer(request);
+        return offer;
     }
 
 }
