@@ -27,3 +27,15 @@ INSERT INTO eat.contact (id, user_id, image_id, firstname, lastname) VALUES (def
 INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 1, 'Aia tn 7', 1, null, null);
 INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 2, 'Vabaduse väljak 1', 2, null, null);
 INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 3, 'Sõpruse pst 2', 6, null, null);
+
+INSERT INTO eat.food_group (id, name, image_id) VALUES (DEFAULT, 'supp', null);
+INSERT INTO eat.food_group (id, name, image_id) VALUES (DEFAULT, 'puder', null);
+INSERT INTO eat.food_group (id, name, image_id) VALUES (DEFAULT, 'sushi', null);
+
+INSERT INTO eat.offer (id, user_id, time, date, price, total_portions, name, description, food_group_id, status)
+VALUES (DEFAULT, 3, 12, '2023-09-13', 5.00, 5, 'Peedisupp', 'Ülimaitsev peedisupp, kus peeti polegi!', 1, 'A')
+INSERT INTO eat.offer (id, user_id, time, date, price, total_portions, name, description, food_group_id, status)
+VALUES (DEFAULT, 3, 12, '2023-09-13', 4.00, 4, 'Kartulipuder', 'Megamaitsev kartulipuder', 2, 'A')
+INSERT INTO eat.offer (id, user_id, time, date, price, total_portions, name, description, food_group_id, status)
+VALUES (DEFAULT, 1, 12, '2023-09-13', 9.00, 2, 'Soolasushi', 'Väga halb sushi!', 3, 'A')
+
