@@ -1,5 +1,6 @@
 package ee.valiit.goeatabit.domain.offer;
 
+import ee.valiit.goeatabit.Offer;
 import ee.valiit.goeatabit.util.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class OfferService {
         List<Offer> activeOffers = offerRepository.getOffersBy(Status.ACTIVE.getLetter());
         return activeOffers;
     }
+
+
 
     public void saveOffer(Offer offer) {
         offerRepository.save(offer);

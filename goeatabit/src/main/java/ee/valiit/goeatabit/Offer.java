@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.domain.offer;
+package ee.valiit.goeatabit;
 
 import ee.valiit.goeatabit.domain.foodgroup.FoodGroup;
 import ee.valiit.goeatabit.domain.user.User;
@@ -25,7 +25,6 @@ public class Offer {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
 
     @NotNull
     @Column(name = "\"time\"", nullable = false)

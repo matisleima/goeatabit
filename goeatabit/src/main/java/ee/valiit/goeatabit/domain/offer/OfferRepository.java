@@ -1,5 +1,6 @@
 package ee.valiit.goeatabit.domain.offer;
 
+import ee.valiit.goeatabit.Offer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

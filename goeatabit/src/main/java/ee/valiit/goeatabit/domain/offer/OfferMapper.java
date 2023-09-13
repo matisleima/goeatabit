@@ -1,5 +1,6 @@
 package ee.valiit.goeatabit.domain.offer;
 
+import ee.valiit.goeatabit.Offer;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public interface OfferMapper {
     @Mapping(source = "offerName", target = "name")
     @Mapping(source = "description", target = "description")
     @Mapping(source = "foodGroupId", target = "foodGroup.id")
-    @Mapping(source = "offerStatus", target = "status")
+    @Mapping(constant = "A", target = "status")
     Offer toOffer(OfferDto request);
 
 }

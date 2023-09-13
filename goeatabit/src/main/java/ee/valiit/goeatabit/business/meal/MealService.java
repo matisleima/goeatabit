@@ -1,17 +1,16 @@
 package ee.valiit.goeatabit.business.meal;
 
+import ee.valiit.goeatabit.Offer;
 import ee.valiit.goeatabit.domain.contact.Contact;
 import ee.valiit.goeatabit.domain.contact.ContactService;
 import ee.valiit.goeatabit.domain.image.Image;
 import ee.valiit.goeatabit.domain.image.ImageService;
 import ee.valiit.goeatabit.domain.location.Location;
 import ee.valiit.goeatabit.domain.location.LocationService;
-import ee.valiit.goeatabit.domain.offer.Offer;
 import ee.valiit.goeatabit.domain.offer.OfferDto;
 import ee.valiit.goeatabit.domain.offer.OfferMapper;
 import ee.valiit.goeatabit.domain.offer.OfferService;
 import ee.valiit.goeatabit.util.ImageConverter;
-import ee.valiit.goeatabit.domain.offer.*;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -70,6 +69,8 @@ public class MealService {
             offerDto.setImageString(imageString);
         }
     }
+
+
 
     @Transactional
     public void addOffer(OfferDto request) {
