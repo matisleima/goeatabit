@@ -60,9 +60,9 @@ public class MealService {
         }
     }
 
-    public void getFilteredOffers(OfferFilterDto offerFilterDto) {
-        offerService.getFilteredOffers(offerFilterDto);
-    }
+    //    public void getFilteredOffers(OfferFilterDto offerFilterDto) {
+//        offerService.getFilteredOffers(offerFilterDto);
+//    }
     private void addPhotoStringToDtos(List<OfferDto> offerDtos) {
         for (OfferDto offerDto : offerDtos) {
             Image image = imageService.getImageBy(offerDto.getFoodGroupId());
@@ -70,20 +70,19 @@ public class MealService {
             offerDto.setImageString(imageString);
         }
     }
+
     @Transactional
     public void addOffer(OfferDto request) {
-        Offer offer = createAndSaveOffer(request);
+        createAndSaveOffer(request);
     }
 
-    private Offer createAndSaveOffer(OfferDto request) {
+    private void createAndSaveOffer(OfferDto request) {
         Offer offer = createOffer(request);
         offerService.saveOffer(offer);
-        return offer;
     }
 
     private Offer createOffer(OfferDto request) {
-        Offer offer = offerMapper.toOffer(request);
-        return offer;
+        return offerMapper.toOffer(request);
     }
 
 }

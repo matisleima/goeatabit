@@ -26,10 +26,10 @@ public class Offer {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Size(max = 255)
+
     @NotNull
     @Column(name = "\"time\"", nullable = false)
-    private String time;
+    private Integer time;
 
     @NotNull
     @Column(name = "date", nullable = false)

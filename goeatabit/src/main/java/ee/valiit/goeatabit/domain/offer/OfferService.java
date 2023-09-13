@@ -20,7 +20,7 @@ public class OfferService {
         offerRepository.save(offer);
     }
 
-    public void getFilteredOffers(OfferFilterDto offerFilterDto) {
-
-    }
+//    public void getFilteredOffers(OfferFilterDto offerFilterDto) {
+//
+//    }
 }

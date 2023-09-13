@@ -19,10 +19,10 @@ public class MealController {
         return mealService.getOffers();
     }
 
-    @GetMapping("/offers")
-    public void getFilteredOffers(@RequestBody OfferFilterDto offerFilterDto) {
-        mealService.getFilteredOffers(offerFilterDto);
-    }
+//    @GetMapping("/offers")
+//    public void getFilteredOffers(@RequestBody OfferFilterDto offerFilterDto) {
+//        mealService.getFilteredOffers(offerFilterDto);
+//    }
     @PostMapping("/offers")
     public void addOffer(@RequestBody OfferDto request) {
         mealService.addOffer(request);

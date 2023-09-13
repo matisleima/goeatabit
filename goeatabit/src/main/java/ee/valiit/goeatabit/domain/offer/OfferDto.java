@@ -21,8 +21,7 @@ public class OfferDto implements Serializable {
     private Integer userId;
     private BigDecimal userRating;
     @NotNull
-    @Size(max = 255)
-    private String time;
+    private Integer time;
     @NotNull
     private LocalDate date;
     @NotNull
