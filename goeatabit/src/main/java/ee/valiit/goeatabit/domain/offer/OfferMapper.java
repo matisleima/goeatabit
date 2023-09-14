@@ -1,13 +1,27 @@
 package ee.valiit.goeatabit.domain.offer;
 
-import ee.valiit.goeatabit.Offer;
-import ee.valiit.goeatabit.domain.offer.dto.OfferDto;
+import ee.valiit.goeatabit.business.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.dto.OfferDto;
 import org.mapstruct.*;
 
 import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface OfferMapper {
+
+    @Mapping(source = "id", target = "offerId")
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.rating", target = "userRating")
+    @Mapping(source = "time", target = "time")
+    @Mapping(source = "date", target = "date")
+    @Mapping(source = "price", target = "price")
+    @Mapping(source = "name", target = "offerName")
+    @Mapping(source = "description", target = "description")
+    @Mapping(source = "location.address", target = "address")
+    FilteredOffer toFilteredOffer(Offer offer);
+
+
+    List<FilteredOffer> toFilteredOffers(List<Offer> offer);
 
 
     @Mapping(source = "id", target = "offerId")
@@ -21,10 +35,9 @@ public interface OfferMapper {
     @Mapping(source = "description", target = "description")
     @Mapping(source = "foodGroup.id", target = "foodGroupId")
     @Mapping(source = "status", target = "offerStatus")
+    OfferDto toOfferDto(Offer offer);
 
-    OfferDto toOfferDto(ee.valiit.goeatabit.Offer offer);
-
-    List<OfferDto> toOfferDtos(List<ee.valiit.goeatabit.Offer> offers);
+    List<OfferDto> toOfferDtos(List<Offer> offers);
 
 
     @Mapping(source = "userId", target = "user.id")

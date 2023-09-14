@@ -1,13 +1,15 @@
 package ee.valiit.goeatabit.business.meal;
 
-import ee.valiit.goeatabit.Offer;
+import ee.valiit.goeatabit.business.dto.FilteredOffer;
+import ee.valiit.goeatabit.domain.offer.Offer;
+import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
 import ee.valiit.goeatabit.domain.contact.Contact;
 import ee.valiit.goeatabit.domain.contact.ContactService;
 import ee.valiit.goeatabit.domain.image.Image;
 import ee.valiit.goeatabit.domain.image.ImageService;
 import ee.valiit.goeatabit.domain.location.Location;
 import ee.valiit.goeatabit.domain.location.LocationService;
-import ee.valiit.goeatabit.domain.offer.dto.OfferDto;
+import ee.valiit.goeatabit.business.dto.OfferDto;
 import ee.valiit.goeatabit.domain.offer.OfferMapper;
 import ee.valiit.goeatabit.domain.offer.OfferService;
 import ee.valiit.goeatabit.util.ImageConverter;
@@ -15,8 +17,6 @@ import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,7 +36,7 @@ public class MealService {
 
 
     public List<OfferDto> getOffers() {
-        List<ee.valiit.goeatabit.Offer> activeOffers = offerService.getActiveOffers();
+        List<Offer> activeOffers = offerService.getActiveOffers();
         List<OfferDto> offerDtos = offerMapper.toOfferDtos(activeOffers);
         addLocationInfoToOfferDtos(offerDtos);
         addContactInfoToOfferDtos(offerDtos);
@@ -61,28 +61,19 @@ public class MealService {
         }
     }
 
-    public List<OfferDto> getFilteredOffers(Integer districtId,
-                                            LocalDate date,
-                                            Integer foodGroupId,
-                                            String description,
-                                            BigDecimal priceLimit,
-                                            Integer userId) {
+    public List<FilteredOffer> getFilteredOffers(FilteredOfferRequest request) {
 
-        List<Offer> filteredOffers = offerService.getFilteredOffers(date, foodGroupId, description, priceLimit);
-        List<OfferDto> filteredOfferDtos = offerMapper.toOfferDtos(filteredOffers);
-        setLocationAndContactInfoToFilteredOfferDtos(districtId, userId, filteredOfferDtos);
-        return filteredOfferDtos;
+        List<Offer> offers = offerService.getFilteredOffers(request);
+        List<FilteredOffer> filteredOffers = offerMapper.toFilteredOffers(offers);
+        addContactInfoToFilteredOffers(filteredOffers);
+        return filteredOffers;
     }
 
-    private void setLocationAndContactInfoToFilteredOfferDtos(Integer districtId, Integer userId, List<OfferDto> filteredOfferDtos) {
-        for (OfferDto offerDto : filteredOfferDtos) {
-            Location location = locationService.getLocationByDistrict(districtId);
-            offerDto.setAddress(location.getAddress());
-            offerDto.setDistrictId(districtId);
-
-            Contact contact = contactService.getContactBy(userId);
-            offerDto.setFirstName(contact.getFirstname());
-            offerDto.setLastName(contact.getLastname());
+    private void addContactInfoToFilteredOffers(List<FilteredOffer> filteredOffers ) {
+        for (FilteredOffer filteredOffer : filteredOffers) {
+            Contact contact = contactService.getContactBy(filteredOffer.getUserId());
+            filteredOffer.setFirstName(contact.getFirstname());
+            filteredOffer.setLastName(contact.getLastname());
         }
     }
 
@@ -101,11 +92,11 @@ public class MealService {
     }
 
     private void createAndSaveOffer(OfferDto request) {
-        ee.valiit.goeatabit.Offer offer = createOffer(request);
+        Offer offer = createOffer(request);
         offerService.saveOffer(offer);
     }
 
-    private ee.valiit.goeatabit.Offer createOffer(OfferDto request) {
+    private Offer createOffer(OfferDto request) {
         return offerMapper.toOffer(request);
     }
 

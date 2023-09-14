@@ -1,11 +1,12 @@
 package ee.valiit.goeatabit.business.meal;
 
-import ee.valiit.goeatabit.domain.offer.dto.OfferDto;
+import ee.valiit.goeatabit.business.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.dto.OfferDto;
+import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -15,19 +16,27 @@ public class MealController {
     @Resource
     private MealService mealService;
 
+    @GetMapping("/filtered-offers")
+    public List<FilteredOffer> getFilteredOffers(@RequestParam Integer districtId,
+                                                 @RequestParam String date,
+                                                 @RequestParam Integer foodGroupId,
+                                                 @RequestParam String description,
+                                                 @RequestParam BigDecimal priceLimit) {
+
+        FilteredOfferRequest request = FilteredOfferRequest.builder()
+                .districtId(districtId)
+                .date(date.trim())
+                .foodGroupId(foodGroupId)
+                .description(description.trim())
+                .priceLimit(priceLimit)
+                .build();
+
+        return mealService.getFilteredOffers(request);
+    }
+
     @GetMapping("/offers")
     public List<OfferDto> getOffers() {
         return mealService.getOffers();
-    }
-
-    @GetMapping("/filtered-offers")
-    public List<OfferDto> getFilteredOffers(@RequestParam Integer districtId,
-                                            @RequestParam LocalDate date,
-                                            @RequestParam Integer foodGroupId,
-                                            @RequestParam String description,
-                                            @RequestParam BigDecimal priceLimit,
-                                            @RequestParam Integer userId) {
-        return mealService.getFilteredOffers(districtId, date, foodGroupId, description, priceLimit, userId);
     }
 
     @PostMapping("/offers")

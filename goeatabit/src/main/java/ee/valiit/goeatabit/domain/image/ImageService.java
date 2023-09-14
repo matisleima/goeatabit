@@ -2,7 +2,7 @@ package ee.valiit.goeatabit.domain.image;
 
 import ee.valiit.goeatabit.business.signup.dto.SignUpRequest;
 import ee.valiit.goeatabit.util.ImageConverter;
-import ee.valiit.goeatabit.util.Status;
+import ee.valiit.goeatabit.validation.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

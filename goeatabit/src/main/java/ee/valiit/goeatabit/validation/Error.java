@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.util;
+package ee.valiit.goeatabit.validation;
 
 import lombok.Getter;
 

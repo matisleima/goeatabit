@@ -5,8 +5,8 @@ import ee.valiit.goeatabit.infrastructure.exception.BusinessException;
 
 import java.util.Optional;
 
-import static ee.valiit.goeatabit.util.Error.INCORRECT_CREDENTIALS;
-import static ee.valiit.goeatabit.util.Error.USER_EMAIL_UNAVAILABLE;
+import static ee.valiit.goeatabit.validation.Error.INCORRECT_CREDENTIALS;
+import static ee.valiit.goeatabit.validation.Error.USER_EMAIL_UNAVAILABLE;
 
 public class ValidationService {
     public static User getValidUser(Optional<User> optionalUser) {

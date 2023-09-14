@@ -4,7 +4,7 @@ package ee.valiit.goeatabit.domain.user;
 import ee.valiit.goeatabit.business.signup.dto.SignUpRequest;
 import ee.valiit.goeatabit.domain.role.Role;
 import ee.valiit.goeatabit.validation.ValidationService;
-import ee.valiit.goeatabit.util.Status;
+import ee.valiit.goeatabit.validation.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

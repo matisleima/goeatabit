@@ -59,6 +59,7 @@ CREATE TABLE eat.location (
 CREATE TABLE eat.offer (
     id serial  NOT NULL,
     user_id int  NOT NULL,
+    location_id int  NOT NULL,
     time int  NOT NULL,
     date date  NOT NULL,
     price decimal(4,2)  NOT NULL,
@@ -169,6 +170,13 @@ ALTER TABLE eat.offer ADD CONSTRAINT offer_food_group
     INITIALLY IMMEDIATE
 ;
 
+-- Reference: offer_user (table: offer)
+ALTER TABLE eat.offer ADD CONSTRAINT offer_location
+    FOREIGN KEY (location_id)
+    REFERENCES eat.location (id)
+    NOT DEFERRABLE
+    INITIALLY IMMEDIATE
+;
 -- Reference: offer_user (table: offer)
 ALTER TABLE eat.offer ADD CONSTRAINT offer_user
     FOREIGN KEY (user_id)
