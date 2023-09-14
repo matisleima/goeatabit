@@ -23,4 +23,8 @@ public class LocationService {
     public Location getLocationBy(Integer userId) {
         return locationRepository.getLocationBy(userId);
     }
+
+    public Location getLocationByDistrict(Integer districtId) {
+        return locationRepository.getLocationByDistrict(districtId);
+    }
 }

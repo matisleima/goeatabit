@@ -5,6 +5,8 @@ import ee.valiit.goeatabit.util.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -23,7 +25,7 @@ public class OfferService {
         offerRepository.save(offer);
     }
 
-//    public void getFilteredOffers(OfferFilterDto offerFilterDto) {
-//
-//    }
+    public List<Offer> getFilteredOffers(LocalDate date, Integer foodGroupId, String description, BigDecimal priceLimit) {
+        return offerRepository.getFilteredOffersBy(date, foodGroupId, description, priceLimit, Status.ACTIVE.getLetter());
+    }
 }

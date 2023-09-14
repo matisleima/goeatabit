@@ -1,6 +1,7 @@
 package ee.valiit.goeatabit.domain.offer;
 
 import ee.valiit.goeatabit.Offer;
+import ee.valiit.goeatabit.domain.offer.dto.OfferDto;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -21,9 +22,9 @@ public interface OfferMapper {
     @Mapping(source = "foodGroup.id", target = "foodGroupId")
     @Mapping(source = "status", target = "offerStatus")
 
-    OfferDto toOfferDto(Offer offer);
+    OfferDto toOfferDto(ee.valiit.goeatabit.Offer offer);
 
-    List<OfferDto> toOfferDtos(List<Offer> offers);
+    List<OfferDto> toOfferDtos(List<ee.valiit.goeatabit.Offer> offers);
 
 
     @Mapping(source = "userId", target = "user.id")
@@ -33,7 +34,6 @@ public interface OfferMapper {
     @Mapping(source = "offerName", target = "name")
     @Mapping(source = "description", target = "description")
     @Mapping(source = "foodGroupId", target = "foodGroup.id")
-    @Mapping(constant = "A", target = "status")
     Offer toOffer(OfferDto request);
 
 }

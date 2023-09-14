@@ -1,9 +1,11 @@
 package ee.valiit.goeatabit.business.meal;
 
-import ee.valiit.goeatabit.domain.offer.OfferDto;
+import ee.valiit.goeatabit.domain.offer.dto.OfferDto;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -18,13 +20,18 @@ public class MealController {
         return mealService.getOffers();
     }
 
-    //        @GetMapping("/offers")
-//    public void getFilteredOffers(@RequestBody OfferFilterDto offerFilterDto) {
-//        mealService.getFilteredOffers(offerFilterDto);
-//    }
+    @GetMapping("/filtered-offers")
+    public List<OfferDto> getFilteredOffers(@RequestParam Integer districtId,
+                                            @RequestParam LocalDate date,
+                                            @RequestParam Integer foodGroupId,
+                                            @RequestParam String description,
+                                            @RequestParam BigDecimal priceLimit,
+                                            @RequestParam Integer userId) {
+        return mealService.getFilteredOffers(districtId, date, foodGroupId, description, priceLimit, userId);
+    }
+
     @PostMapping("/offers")
     public void addOffer(@RequestBody OfferDto request) {
-
         mealService.addOffer(request);
     }
 

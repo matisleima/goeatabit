@@ -1,6 +1,6 @@
 package ee.valiit.goeatabit.domain.location;
 
-import ee.valiit.goeatabit.domain.offer.OfferDto;
+import ee.valiit.goeatabit.domain.offer.dto.OfferDto;
 import ee.valiit.goeatabit.business.signup.dto.SignUpRequest;
 import org.mapstruct.*;
 

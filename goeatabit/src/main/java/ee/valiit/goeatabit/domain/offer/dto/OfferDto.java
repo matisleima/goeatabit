@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.domain.offer;
+package ee.valiit.goeatabit.domain.offer.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * DTO for {@link Offer}
+ * DTO for {@link OfferFilterDto}
  */
 @Data
 @AllArgsConstructor
