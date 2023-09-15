@@ -11,6 +11,7 @@ public interface LocationMapper {
     Location toLocation(SignUpRequest signUpRequest);
 
     @Mapping(source = "district.id", target = "districtId")
-    @Mapping(source = "address", target = "address")
-    OfferDto toOfferDto(Location location);
+    @Mapping(source = "district.name", target = "districtName")
+    LocationDto toLocationDto(Location location);
+
 }

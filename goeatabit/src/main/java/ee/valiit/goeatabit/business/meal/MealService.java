@@ -1,6 +1,7 @@
 package ee.valiit.goeatabit.business.meal;
 
 import ee.valiit.goeatabit.business.dto.FilteredOffer;
+import ee.valiit.goeatabit.domain.location.LocationDto;
 import ee.valiit.goeatabit.domain.offer.Offer;
 import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
 import ee.valiit.goeatabit.domain.contact.Contact;
@@ -44,7 +45,6 @@ public class MealService {
         return offerDtos;
     }
 
-
     private void addLocationInfoToOfferDtos(List<OfferDto> offerDtos) {
         for (OfferDto offerDto : offerDtos) {
             Location location = locationService.getLocationBy(offerDto.getUserId());
@@ -76,7 +76,6 @@ public class MealService {
             filteredOffer.setLastName(contact.getLastname());
         }
     }
-
 
     private void addPhotoStringToDtos(List<OfferDto> offerDtos) {
         for (OfferDto offerDto : offerDtos) {
@@ -113,5 +112,9 @@ public class MealService {
         selectedOfferDto.setLastName(contact.getLastname());
         Location location = locationService.getLocationBy(userId);
         selectedOfferDto.setAddress(location.getAddress());
+    }
+
+    public LocationDto getDistrict(Integer userId) {
+        return locationService.getOfferDistrictName(userId);
     }
 }
