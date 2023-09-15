@@ -1,10 +1,10 @@
 package ee.valiit.goeatabit.business.meal;
 
 
+import ee.valiit.goeatabit.business.meal.dto.EventDto;
 import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
 import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
 import ee.valiit.goeatabit.business.offer.dto.OfferDto;
-import ee.valiit.goeatabit.domain.event.Event;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,7 +58,7 @@ public class MealController {
     }
 
     @GetMapping("/events")
-    public List<Event> getMyEvents(@RequestParam Integer userId) {
+    public List<EventDto> getMyEvents(@RequestParam Integer userId) {
         return mealService.getMyEvents(userId);
     }
 

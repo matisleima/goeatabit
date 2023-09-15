@@ -1,5 +1,6 @@
 package ee.valiit.goeatabit.business.meal;
 
+import ee.valiit.goeatabit.business.meal.dto.EventDto;
 import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
 import ee.valiit.goeatabit.business.offer.dto.OfferDto;
 import ee.valiit.goeatabit.domain.event.Event;
@@ -47,7 +48,6 @@ public class MealService {
     private OfferMapper offerMapper;
     @Resource
     private EventMapper eventMapper;
-
 
 
     public List<OfferDto> getOffers() {
@@ -135,6 +135,7 @@ public class MealService {
         Location location = locationService.getLocationBy(userId);
         selectedOfferDto.setAddress(location.getAddress());
     }
+
     public void addEvent(Integer offerId, Integer userId) {
         Offer offer = offerService.getOffer(offerId);
         User user = userService.getUserBy(userId);
@@ -147,8 +148,20 @@ public class MealService {
         eventService.saveEvent(event);
     }
 
-    public List<Event> getMyEvents(Integer userId) {
+    public List<EventDto> getMyEvents(Integer userId) {
         List<Event> myEvents = eventService.getMyEvents(userId);
-        return eventMapper.toEventDtos(myEvents);
+        List<EventDto> myEventDtos = eventMapper.toEventDtos(myEvents);
+        addContactAndLocationDataToMyEventsDtos(myEventDtos);
+        return myEventDtos;
+    }
+
+    private void addContactAndLocationDataToMyEventsDtos(List<EventDto> myEventDtos) {
+        for (EventDto eventDto : myEventDtos) {
+            Contact contact = contactService.getContactBy(eventDto.getOfferUserId());
+            Location location = locationService.getLocationBy(eventDto.getOfferUserId());
+            eventDto.setFirstName(contact.getFirstname());
+            eventDto.setLastName(contact.getLastname());
+            eventDto.setAddress(location.getAddress());
+        }
     }
 }

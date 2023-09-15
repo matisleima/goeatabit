@@ -22,13 +22,18 @@ public class EventDto implements Serializable {
     private Integer offerId;
     private Integer offerUserId;
     private BigDecimal offerUserRating;
-    private Integer offerTime;
-    private LocalDate offerDate;
-    private BigDecimal offerPrice;
-    private Integer offerTotalPortions;
+    private Integer time;
+    private LocalDate date;
+    private BigDecimal price;
+    private Integer totalPortions;
     private String offerName;
-    private String offerDescription;
+    private String description;
     private String offerStatus;
     @NotNull
     private String eventStatus;
+
+    private String firstName;
+    private String lastName;
+
+    private String address;
 }
