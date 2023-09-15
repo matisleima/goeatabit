@@ -100,4 +100,18 @@ public class MealService {
         return offerMapper.toOffer(request);
     }
 
+    public OfferDto getOffer(Integer offerId, Integer userId) {
+        Offer selectedOffer = offerService.getOffer(offerId);
+        OfferDto selectedOfferDto = offerMapper.toOfferDto(selectedOffer);
+        addContactAndLocationDataToSelectedOfferDto(userId, selectedOfferDto);
+        return selectedOfferDto;
+    }
+
+    private void addContactAndLocationDataToSelectedOfferDto(Integer userId, OfferDto selectedOfferDto) {
+        Contact contact = contactService.getContactBy(userId);
+        selectedOfferDto.setFirstName(contact.getFirstname());
+        selectedOfferDto.setLastName(contact.getLastname());
+        Location location = locationService.getLocationBy(userId);
+        selectedOfferDto.setAddress(location.getAddress());
+    }
 }

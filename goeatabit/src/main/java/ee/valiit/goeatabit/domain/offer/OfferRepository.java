@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface OfferRepository extends JpaRepository<Offer, Integer> {
 
@@ -23,5 +24,6 @@ public interface OfferRepository extends JpaRepository<Offer, Integer> {
             """)
     List<Offer> getFilteredOffersBy(Integer foodGroupId, Integer districtId, BigDecimal priceLimit, String status, String description, LocalDate localDate);
 
-
+    @Query("select o from Offer o where o.id = ?1")
+    Offer getOfferBy(Integer offerId);
 }

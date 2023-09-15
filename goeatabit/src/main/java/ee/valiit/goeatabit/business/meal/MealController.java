@@ -34,6 +34,11 @@ public class MealController {
         return mealService.getFilteredOffers(request);
     }
 
+    @GetMapping("/offer")
+    public OfferDto getOffer(@RequestParam Integer offerId, @RequestParam Integer userId) {
+        return mealService.getOffer(offerId, userId);
+    }
+
     @GetMapping("/offers")
     public List<OfferDto> getOffers() {
         return mealService.getOffers();
@@ -41,6 +46,7 @@ public class MealController {
 
     @PostMapping("/offers")
     public void addOffer(@RequestBody OfferDto request) {
+
         mealService.addOffer(request);
     }
 

@@ -41,4 +41,8 @@ public class OfferService {
     public void saveOffer(Offer offer) {
         offerRepository.save(offer);
     }
+
+    public Offer getOffer(Integer offerId) {
+        return offerRepository.getOfferBy(offerId);
+    }
 }
