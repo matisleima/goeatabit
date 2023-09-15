@@ -1,10 +1,11 @@
 package ee.valiit.goeatabit.domain.foodgroup;
 
 import jakarta.annotation.Resource;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Resource
+@Service
 public class FoodGroupService {
 
     @Resource
