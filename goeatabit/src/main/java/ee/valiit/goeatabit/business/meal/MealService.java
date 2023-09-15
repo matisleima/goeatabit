@@ -1,6 +1,7 @@
 package ee.valiit.goeatabit.business.meal;
 
-import ee.valiit.goeatabit.business.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
+import ee.valiit.goeatabit.domain.event.EventService;
 import ee.valiit.goeatabit.domain.location.LocationDto;
 import ee.valiit.goeatabit.domain.offer.Offer;
 import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
@@ -10,9 +11,11 @@ import ee.valiit.goeatabit.domain.image.Image;
 import ee.valiit.goeatabit.domain.image.ImageService;
 import ee.valiit.goeatabit.domain.location.Location;
 import ee.valiit.goeatabit.domain.location.LocationService;
-import ee.valiit.goeatabit.business.dto.OfferDto;
+import ee.valiit.goeatabit.business.offer.dto.OfferDto;
 import ee.valiit.goeatabit.domain.offer.OfferMapper;
 import ee.valiit.goeatabit.domain.offer.OfferService;
+import ee.valiit.goeatabit.domain.user.User;
+import ee.valiit.goeatabit.domain.user.UserService;
 import ee.valiit.goeatabit.util.ImageConverter;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
@@ -26,9 +29,12 @@ public class MealService {
     private OfferService offerService;
     @Resource
     private LocationService locationService;
-
     @Resource
     private ContactService contactService;
+    @Resource
+    private EventService eventService;
+    @Resource
+    private UserService userService;
     @Resource
     private OfferMapper offerMapper;
 
@@ -116,5 +122,11 @@ public class MealService {
 
     public LocationDto getDistrict(Integer userId) {
         return locationService.getOfferDistrictName(userId);
+    }
+
+    public void addEvent(Integer offerId, Integer userId) {
+        Offer offer = offerService.getOffer(offerId);
+        User user = userService.getActiveUser(userId);
+        eventService.addEvent(offer, user);
     }
 }

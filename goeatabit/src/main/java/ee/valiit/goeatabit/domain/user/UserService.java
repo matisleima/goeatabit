@@ -38,4 +38,8 @@ public class UserService {
         boolean userEmailExists = userRepository.userExistsBy(email);
         ValidationService.validateEmailIsAvailable(userEmailExists);
     }
+
+    public User getActiveUser(Integer userId) {
+        return userRepository.getActiveUserByUserId(userId);
+    }
 }

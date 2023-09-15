@@ -1,7 +1,7 @@
 package ee.valiit.goeatabit.business.meal;
 
-import ee.valiit.goeatabit.business.dto.FilteredOffer;
-import ee.valiit.goeatabit.business.dto.OfferDto;
+import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.offer.dto.OfferDto;
 import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
 import ee.valiit.goeatabit.domain.location.LocationDto;
 import jakarta.annotation.Resource;
@@ -40,7 +40,8 @@ public class MealController {
         return mealService.getOffer(offerId, userId);
     }
 
-    @GetMapping("/offers")
+    @GetMapping("/offers") //selle ülesandeid täidab tegelikult getFilteredOffers. Aga getOffersi ahelast tuleb
+                            // getFilteredOffersi külge panna image'i äratoomine
     public List<OfferDto> getOffers() {
         return mealService.getOffers();
     }
@@ -52,8 +53,13 @@ public class MealController {
 
     @PostMapping("/offers")
     public void addOffer(@RequestBody OfferDto request) {
-
         mealService.addOffer(request);
+    }
+
+    @PostMapping("/event")
+    public void addReservation(@RequestParam Integer offerId, @RequestParam Integer userId) {
+        mealService.addEvent(offerId, userId);
+
     }
 
 }

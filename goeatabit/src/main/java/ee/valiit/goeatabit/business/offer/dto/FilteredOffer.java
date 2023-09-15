@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.dto;
+package ee.valiit.goeatabit.business.offer.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
