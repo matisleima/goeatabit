@@ -1,6 +1,8 @@
 package ee.valiit.goeatabit.business.meal;
 
-import ee.valiit.goeatabit.business.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.offer.dto.OfferDto;
+import ee.valiit.goeatabit.domain.event.EventService;
 import ee.valiit.goeatabit.domain.foodgroup.FoodGroup;
 import ee.valiit.goeatabit.domain.foodgroup.FoodGroupService;
 import ee.valiit.goeatabit.domain.offer.Offer;
@@ -11,7 +13,6 @@ import ee.valiit.goeatabit.domain.image.Image;
 import ee.valiit.goeatabit.domain.image.ImageService;
 import ee.valiit.goeatabit.domain.location.Location;
 import ee.valiit.goeatabit.domain.location.LocationService;
-import ee.valiit.goeatabit.business.dto.OfferDto;
 import ee.valiit.goeatabit.domain.offer.OfferMapper;
 import ee.valiit.goeatabit.domain.offer.OfferService;
 import ee.valiit.goeatabit.domain.user.User;
@@ -133,7 +134,7 @@ public class MealService {
     }
     public void addEvent(Integer offerId, Integer userId) {
         Offer offer = offerService.getOffer(offerId);
-        User user = userService.getActiveUser(userId);
+        User user = userService.getUserBy(userId);
         eventService.addEvent(offer, user);
     }
 

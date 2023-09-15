@@ -1,8 +1,9 @@
 package ee.valiit.goeatabit.business.meal;
 
-import ee.valiit.goeatabit.business.dto.FilteredOffer;
-import ee.valiit.goeatabit.business.dto.OfferDto;
+
 import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
+import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.offer.dto.OfferDto;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
