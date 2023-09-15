@@ -1,5 +1,6 @@
 package ee.valiit.goeatabit.domain.foodgroup;
 
+import ee.valiit.goeatabit.business.foodgroup.FoodGroupDto;
 import org.mapstruct.*;
 
 import java.util.List;

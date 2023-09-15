@@ -1,8 +1,5 @@
 package ee.valiit.goeatabit.domain.event;
 
-import ee.valiit.goeatabit.domain.offer.Offer;
-import ee.valiit.goeatabit.domain.user.User;
-import ee.valiit.goeatabit.validation.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +9,7 @@ public class EventService {
     private EventRepository eventRepository;
 
 
-    public void addEvent(Offer offer, User user) {
-        Event event = new Event();
-        event.setOffer(offer);
-        event.setUser(user);
-        event.setStatus(Status.ACTIVE.getLetter());
+    public void saveEvent(Event event) {
         eventRepository.save(event);
     }
 }

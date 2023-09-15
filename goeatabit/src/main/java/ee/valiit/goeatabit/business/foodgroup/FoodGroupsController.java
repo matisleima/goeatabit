@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.domain.foodgroup;
+package ee.valiit.goeatabit.business.foodgroup;
 
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class FoodGroupController {
+public class FoodGroupsController {
 
     @Resource
-    private FoodGroupService foodGroupService;
+    private FoodGroupsService foodGroupsService;
     @GetMapping("/food-groups")
     public List<FoodGroupDto> getFoodGroups() {
-        return foodGroupService.getFoodGroups();
+        return foodGroupsService.getFoodGroups();
     }
 }

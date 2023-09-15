@@ -17,8 +17,7 @@ public class ImageService {
         imageRepository.save(image);
     }
 
-    public Image getImageBy(Integer FoodGroupId) {
-        return imageRepository.getImageStringBy(FoodGroupId);
-
+    public Image getImageBy(Integer foodGroupId) {
+        return imageRepository.getImageStringBy(foodGroupId);
     }
 }

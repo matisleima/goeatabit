@@ -27,10 +27,6 @@ public class OfferService {
 
     }
 
-    private static boolean hasDate(FilteredOfferRequest request) {
-        return !request.getDate().isBlank();
-    }
-
     public List<Offer> getActiveOffers() {
         List<Offer> activeOffers = offerRepository.getOffersBy(Status.ACTIVE.getLetter());
         return activeOffers;
@@ -42,6 +38,10 @@ public class OfferService {
 
     public Offer getOffer(Integer offerId) {
         return offerRepository.getActiveOfferBy(offerId, Status.ACTIVE.getLetter());
+    }
+
+    private static boolean hasDate(FilteredOfferRequest request) {
+        return !request.getDate().isBlank();
     }
 
 }

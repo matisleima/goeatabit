@@ -1,23 +1,21 @@
 package ee.valiit.goeatabit.domain.foodgroup;
 
 import jakarta.annotation.Resource;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Resource
 public class FoodGroupService {
+
     @Resource
     private FoodGroupRepository foodGroupRepository;
-    @Resource
-    private FoodGroupMapper foodGroupMapper;
-    public List<FoodGroupDto> getFoodGroups() {
-        List<FoodGroup> foodGroups = foodGroupRepository.findAll();
-        List<FoodGroupDto> foodGroupDtos = foodGroupMapper.toFoodGroupDtos(foodGroups);
-        return foodGroupDtos;
+
+    public List<FoodGroup> findAllFoodGroups() {
+        return foodGroupRepository.findAll();
     }
 
     public FoodGroup getFoodGroupBy(Integer foodGroupId) {
-      return  foodGroupRepository.getReferenceById(foodGroupId);
+        return foodGroupRepository.getReferenceById(foodGroupId);
     }
+
 }

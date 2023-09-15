@@ -1,5 +1,6 @@
-package ee.valiit.goeatabit.domain.foodgroup;
+package ee.valiit.goeatabit.business.foodgroup;
 
+import ee.valiit.goeatabit.domain.foodgroup.FoodGroup;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

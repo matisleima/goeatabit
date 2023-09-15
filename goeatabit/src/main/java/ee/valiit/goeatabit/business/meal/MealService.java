@@ -2,9 +2,10 @@ package ee.valiit.goeatabit.business.meal;
 
 import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
 import ee.valiit.goeatabit.business.offer.dto.OfferDto;
+import ee.valiit.goeatabit.domain.event.Event;
 import ee.valiit.goeatabit.domain.event.EventService;
 import ee.valiit.goeatabit.domain.foodgroup.FoodGroup;
-import ee.valiit.goeatabit.domain.foodgroup.FoodGroupService;
+import ee.valiit.goeatabit.business.foodgroup.FoodGroupsService;
 import ee.valiit.goeatabit.domain.offer.Offer;
 import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
 import ee.valiit.goeatabit.domain.contact.Contact;
@@ -18,6 +19,7 @@ import ee.valiit.goeatabit.domain.offer.OfferService;
 import ee.valiit.goeatabit.domain.user.User;
 import ee.valiit.goeatabit.domain.user.UserService;
 import ee.valiit.goeatabit.util.ImageConverter;
+import ee.valiit.goeatabit.validation.Status;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -44,7 +46,7 @@ public class MealService {
     @Resource
     private ImageService imageService;
     @Resource
-    private FoodGroupService foodGroupService;
+    private FoodGroupsService foodGroupsService;
 
 
     public List<OfferDto> getOffers() {
@@ -110,7 +112,7 @@ public class MealService {
         Integer userId = request.getUserId();
         User user = userService.getUserBy(userId);
         Location location = locationService.getLocationBy(userId);
-        FoodGroup foodGroup = foodGroupService.getFoodGroupBy(request.getFoodGroupId());
+        FoodGroup foodGroup = foodGroupsService.getFoodGroupBy(request.getFoodGroupId());
         Offer offer = offerMapper.toOffer(request);
         offer.setUser(user);
         offer.setLocation(location);
@@ -135,7 +137,14 @@ public class MealService {
     public void addEvent(Integer offerId, Integer userId) {
         Offer offer = offerService.getOffer(offerId);
         User user = userService.getUserBy(userId);
-        eventService.addEvent(offer, user);
+
+        Event event = new Event();
+        event.setOffer(offer);
+        event.setUser(user);
+        event.setStatus(Status.ACTIVE.getLetter());
+
+
+        eventService.saveEvent(event);
     }
 
 }
