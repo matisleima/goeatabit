@@ -12,11 +12,7 @@ public class RatingService {
     @Resource
     private RatingRepository ratingRepository;
 
-    public void saveRating(User savedUser) {
-        Rating rating = new Rating();
-        rating.setCounter(0);
-        rating.setSum(0);
-        rating.setUser(savedUser);
+    public void saveRating(Rating rating) {
         ratingRepository.save(rating);
     }
 }

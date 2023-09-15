@@ -13,5 +13,6 @@ public interface UserMapper {
     @Mapping(source = "email", target = "email")
     @Mapping(source = "password", target = "password")
     @Mapping(constant = "0.0", target = "rating")
+    @Mapping(constant = "A", target = "status")
     User toUser(SignUpRequest signUpRequest);
 }

@@ -40,13 +40,14 @@ public interface OfferMapper {
     List<OfferDto> toOfferDtos(List<Offer> offers);
 
 
-    @Mapping(source = "userId", target = "user.id")
+
+
+
     @Mapping(source = "time", target = "time")
     @Mapping(source = "date", target = "date")
     @Mapping(source = "totalPortions", target = "totalPortions")
     @Mapping(source = "offerName", target = "name")
     @Mapping(source = "description", target = "description")
-    @Mapping(source = "foodGroupId", target = "foodGroup.id")
     Offer toOffer(OfferDto request);
 
 }

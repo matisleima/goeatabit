@@ -16,4 +16,8 @@ public class FoodGroupService {
         List<FoodGroupDto> foodGroupDtos = foodGroupMapper.toFoodGroupDtos(foodGroups);
         return foodGroupDtos;
     }
+
+    public FoodGroup getFoodGroupBy(Integer foodGroupId) {
+      return  foodGroupRepository.getReferenceById(foodGroupId);
+    }
 }

@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LocationDto implements Serializable {
+public class DistrictInfo implements Serializable {
     private Integer districtId;
     private String districtName;
 }

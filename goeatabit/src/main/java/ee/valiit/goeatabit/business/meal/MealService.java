@@ -1,7 +1,8 @@
 package ee.valiit.goeatabit.business.meal;
 
 import ee.valiit.goeatabit.business.dto.FilteredOffer;
-import ee.valiit.goeatabit.domain.location.LocationDto;
+import ee.valiit.goeatabit.domain.foodgroup.FoodGroup;
+import ee.valiit.goeatabit.domain.foodgroup.FoodGroupService;
 import ee.valiit.goeatabit.domain.offer.Offer;
 import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
 import ee.valiit.goeatabit.domain.contact.Contact;
@@ -13,6 +14,8 @@ import ee.valiit.goeatabit.domain.location.LocationService;
 import ee.valiit.goeatabit.business.dto.OfferDto;
 import ee.valiit.goeatabit.domain.offer.OfferMapper;
 import ee.valiit.goeatabit.domain.offer.OfferService;
+import ee.valiit.goeatabit.domain.user.User;
+import ee.valiit.goeatabit.domain.user.UserService;
 import ee.valiit.goeatabit.util.ImageConverter;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
@@ -25,6 +28,8 @@ public class MealService {
     @Resource
     private OfferService offerService;
     @Resource
+    private UserService userService;
+    @Resource
     private LocationService locationService;
 
     @Resource
@@ -32,8 +37,12 @@ public class MealService {
     @Resource
     private OfferMapper offerMapper;
 
+
+
     @Resource
     private ImageService imageService;
+    @Resource
+    private FoodGroupService foodGroupService;
 
 
     public List<OfferDto> getOffers() {
@@ -69,7 +78,7 @@ public class MealService {
         return filteredOffers;
     }
 
-    private void addContactInfoToFilteredOffers(List<FilteredOffer> filteredOffers ) {
+    private void addContactInfoToFilteredOffers(List<FilteredOffer> filteredOffers) {
         for (FilteredOffer filteredOffer : filteredOffers) {
             Contact contact = contactService.getContactBy(filteredOffer.getUserId());
             filteredOffer.setFirstName(contact.getFirstname());
@@ -96,7 +105,15 @@ public class MealService {
     }
 
     private Offer createOffer(OfferDto request) {
-        return offerMapper.toOffer(request);
+        Integer userId = request.getUserId();
+        User user = userService.getUserBy(userId);
+        Location location = locationService.getLocationBy(userId);
+        FoodGroup foodGroup = foodGroupService.getFoodGroupBy(request.getFoodGroupId());
+        Offer offer = offerMapper.toOffer(request);
+        offer.setUser(user);
+        offer.setLocation(location);
+        offer.setFoodGroup(foodGroup);
+        return offer;
     }
 
     public OfferDto getOffer(Integer offerId, Integer userId) {
@@ -114,7 +131,5 @@ public class MealService {
         selectedOfferDto.setAddress(location.getAddress());
     }
 
-    public LocationDto getDistrict(Integer userId) {
-        return locationService.getOfferDistrictName(userId);
-    }
+
 }

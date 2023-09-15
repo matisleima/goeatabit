@@ -3,7 +3,6 @@ package ee.valiit.goeatabit.business.meal;
 import ee.valiit.goeatabit.business.dto.FilteredOffer;
 import ee.valiit.goeatabit.business.dto.OfferDto;
 import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
-import ee.valiit.goeatabit.domain.location.LocationDto;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +34,11 @@ public class MealController {
         return mealService.getFilteredOffers(request);
     }
 
+    @PostMapping("/offer")
+    public void addOffer(@RequestBody OfferDto request) {
+        mealService.addOffer(request);
+    }
+
     @GetMapping("/offer")
     public OfferDto getOffer(@RequestParam Integer offerId, @RequestParam Integer userId) {
         return mealService.getOffer(offerId, userId);
@@ -45,15 +49,5 @@ public class MealController {
         return mealService.getOffers();
     }
 
-    @GetMapping("/offers/location")
-    public LocationDto getDistrict(@RequestParam Integer userId) {
-        return mealService.getDistrict(userId);
-    }
-
-    @PostMapping("/offers")
-    public void addOffer(@RequestBody OfferDto request) {
-
-        mealService.addOffer(request);
-    }
 
 }

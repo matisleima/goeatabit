@@ -1,14 +1,15 @@
 package ee.valiit.goeatabit.util;
 
-import ee.valiit.goeatabit.business.signup.dto.SignUpRequest;
 import ee.valiit.goeatabit.domain.image.Image;
+import ee.valiit.goeatabit.validation.Status;
 
 import java.nio.charset.StandardCharsets;
 
 public class ImageConverter {
-    public static Image imageStringToImageBytes(SignUpRequest signUpRequest) {
+    public static Image imageStringToImage(String imageString) {
         Image image = new Image();
-        image.setData(signUpRequest.getImageString().getBytes(StandardCharsets.UTF_8));
+        image.setData(imageString.getBytes(StandardCharsets.UTF_8));
+        image.setStatus(Status.ACTIVE.getLetter());
         return image;
 
     }

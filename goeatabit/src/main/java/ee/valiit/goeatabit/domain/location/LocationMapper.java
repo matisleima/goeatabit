@@ -1,6 +1,6 @@
 package ee.valiit.goeatabit.domain.location;
 
-import ee.valiit.goeatabit.business.dto.OfferDto;
+import ee.valiit.goeatabit.business.district.dto.DistrictDto;
 import ee.valiit.goeatabit.business.signup.dto.SignUpRequest;
 import org.mapstruct.*;
 
@@ -12,6 +12,6 @@ public interface LocationMapper {
 
     @Mapping(source = "district.id", target = "districtId")
     @Mapping(source = "district.name", target = "districtName")
-    LocationDto toLocationDto(Location location);
+    DistrictDto toDistrictDto(Location location);
 
 }

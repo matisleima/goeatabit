@@ -11,13 +11,8 @@ public class ContactService {
 
     @Resource
     private ContactRepository contactRepository;
-    @Resource
-    private ContactMapper contactMapper;
 
-    public void saveContact(SignUpRequest signUpRequest, Image savedImage, User savedUser) {
-        Contact contact = contactMapper.toContact(signUpRequest);
-        contact.setUser(savedUser);
-        contact.setImage(savedImage);
+    public void saveContact(Contact contact) {
         contactRepository.save(contact);
     }
 

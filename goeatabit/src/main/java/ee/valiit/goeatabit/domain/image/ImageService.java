@@ -13,13 +13,8 @@ public class ImageService {
     @Resource
     private ImageRepository imageRepository;
 
-
-
-    public Image saveImageData(SignUpRequest signUpRequest) {
-        Image image = ImageConverter.imageStringToImageBytes(signUpRequest);
-        image.setStatus(Status.ACTIVE.getLetter());
-        Image savedImage = imageRepository.save(image);
-        return savedImage;
+    public void saveImage(Image image) {
+        imageRepository.save(image);
     }
 
     public Image getImageBy(Integer FoodGroupId) {
