@@ -24,5 +24,5 @@ public interface EventMapper {
     @Mapping(source = "status", target = "eventStatus")
     EventDto toEventDto(Event event);
 
-    List<Event> toEventDtos(List<Event> myEvents);
+    List<EventDto> toEventDtos(EventDto eventDto);
 }
