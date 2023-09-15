@@ -20,8 +20,9 @@ public interface OfferRepository extends JpaRepository<Offer, Integer> {
             and o.status = ?4
             and (lower(o.description) LIKE CONCAT('%', lower(?5), '%') or ?5 = '')
             and (o.date = ?6 or ?6 = date('1984-05-04'))
+            and (o.user.id = ?7 or ?7 = 0)
             """)
-    List<Offer> getFilteredOffersBy(Integer foodGroupId, Integer districtId, BigDecimal priceLimit, String status, String description, LocalDate localDate);
+    List<Offer> getFilteredOffersBy(Integer foodGroupId, Integer districtId, BigDecimal priceLimit, String status, String description, LocalDate localDate, Integer userId);
 
     @Query("select o from Offer o where o.id = ?1 and o.status = ?2")
     Offer getActiveOfferBy(Integer offerId, String status);

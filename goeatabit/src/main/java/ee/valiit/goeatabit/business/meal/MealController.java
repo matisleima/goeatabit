@@ -4,6 +4,7 @@ package ee.valiit.goeatabit.business.meal;
 import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
 import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
 import ee.valiit.goeatabit.business.offer.dto.OfferDto;
+import ee.valiit.goeatabit.domain.event.Event;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,8 @@ public class MealController {
                                                  @RequestParam String date,
                                                  @RequestParam Integer foodGroupId,
                                                  @RequestParam String description,
-                                                 @RequestParam BigDecimal priceLimit) {
+                                                 @RequestParam BigDecimal priceLimit,
+                                                 @RequestParam Integer userId) {
 
         FilteredOfferRequest request = FilteredOfferRequest.builder()
                 .districtId(districtId)
@@ -30,6 +32,7 @@ public class MealController {
                 .foodGroupId(foodGroupId)
                 .description(description.trim())
                 .priceLimit(priceLimit)
+                .userId(userId)
                 .build();
 
         return mealService.getFilteredOffers(request);
@@ -45,14 +48,18 @@ public class MealController {
         return mealService.getOffer(offerId, userId);
     }
 
-    @GetMapping("/offers")
+    @GetMapping("/offers") //see dubleerib getFilteredOffered meetodit, v.a. image'i äratoomise osas
     public List<OfferDto> getOffers() {
         return mealService.getOffers();
     }
     @PostMapping("/event")
     public void addReservation(@RequestParam Integer offerId, @RequestParam Integer userId) {
         mealService.addEvent(offerId, userId);
+    }
 
+    @GetMapping("/events")
+    public List<Event> getMyEvents(@RequestParam Integer userId) {
+        return mealService.getMyEvents(userId);
     }
 
 }

@@ -23,7 +23,7 @@ public class OfferService {
         } else {
             localDate = DateConverter.stringToLocalDate(DATE_TO_INCLUCE_ALL_DATES);
         }
-        return offerRepository.getFilteredOffersBy(request.getFoodGroupId(), request.getDistrictId(), request.getPriceLimit(), Status.ACTIVE.getLetter(), request.getDescription(), localDate);
+        return offerRepository.getFilteredOffersBy(request.getFoodGroupId(), request.getDistrictId(), request.getPriceLimit(), Status.ACTIVE.getLetter(), request.getDescription(), localDate, request.getUserId());
 
     }
 

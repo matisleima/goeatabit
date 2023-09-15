@@ -18,4 +18,5 @@ public class FilteredOfferRequest {
     private Integer foodGroupId;
     private String description;
     private BigDecimal priceLimit;
+    private Integer userId;
 }

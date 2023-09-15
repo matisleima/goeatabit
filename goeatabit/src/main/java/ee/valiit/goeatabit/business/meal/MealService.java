@@ -3,6 +3,7 @@ package ee.valiit.goeatabit.business.meal;
 import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
 import ee.valiit.goeatabit.business.offer.dto.OfferDto;
 import ee.valiit.goeatabit.domain.event.Event;
+import ee.valiit.goeatabit.domain.event.EventMapper;
 import ee.valiit.goeatabit.domain.event.EventService;
 import ee.valiit.goeatabit.domain.foodgroup.FoodGroup;
 import ee.valiit.goeatabit.business.foodgroup.FoodGroupsService;
@@ -34,19 +35,19 @@ public class MealService {
     private UserService userService;
     @Resource
     private LocationService locationService;
-
     @Resource
     private ContactService contactService;
-    @Resource
-    private OfferMapper offerMapper;
-    @Resource
-    private EventService eventService;
-
-
     @Resource
     private ImageService imageService;
     @Resource
     private FoodGroupsService foodGroupsService;
+    @Resource
+    private EventService eventService;
+    @Resource
+    private OfferMapper offerMapper;
+    @Resource
+    private EventMapper eventMapper;
+
 
 
     public List<OfferDto> getOffers() {
@@ -143,8 +144,11 @@ public class MealService {
         event.setUser(user);
         event.setStatus(Status.ACTIVE.getLetter());
 
-
         eventService.saveEvent(event);
     }
 
+    public List<Event> getMyEvents(Integer userId) {
+        List<Event> myEvents = eventService.getMyEvents(userId);
+        return eventMapper.toEventDtos(myEvents);
+    }
 }
