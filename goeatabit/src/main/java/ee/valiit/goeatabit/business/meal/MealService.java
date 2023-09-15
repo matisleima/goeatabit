@@ -36,7 +36,8 @@ public class MealService {
     private ContactService contactService;
     @Resource
     private OfferMapper offerMapper;
-
+    @Resource
+    private EventService eventService;
 
 
     @Resource
@@ -130,6 +131,10 @@ public class MealService {
         Location location = locationService.getLocationBy(userId);
         selectedOfferDto.setAddress(location.getAddress());
     }
-
+    public void addEvent(Integer offerId, Integer userId) {
+        Offer offer = offerService.getOffer(offerId);
+        User user = userService.getActiveUser(userId);
+        eventService.addEvent(offer, user);
+    }
 
 }

@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.dto;
+package ee.valiit.goeatabit.business.offer.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

@@ -36,13 +36,12 @@ public class OfferService {
         return activeOffers;
     }
 
-
-
     public void saveOffer(Offer offer) {
         offerRepository.save(offer);
     }
 
     public Offer getOffer(Integer offerId) {
-        return offerRepository.getOfferBy(offerId);
+        return offerRepository.getActiveOfferBy(offerId, Status.ACTIVE.getLetter());
     }
+
 }

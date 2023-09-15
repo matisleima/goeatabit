@@ -1,7 +1,7 @@
 package ee.valiit.goeatabit.domain.offer;
 
-import ee.valiit.goeatabit.business.dto.FilteredOffer;
-import ee.valiit.goeatabit.business.dto.OfferDto;
+import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.offer.dto.OfferDto;
 import org.mapstruct.*;
 
 import java.util.List;
