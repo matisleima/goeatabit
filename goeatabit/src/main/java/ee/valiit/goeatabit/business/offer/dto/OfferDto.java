@@ -50,4 +50,6 @@ public class OfferDto implements Serializable {
 
     private String imageString;
 
+    private String userImageString;
+
 }

@@ -71,6 +71,8 @@ public class MealService {
             Contact contact = contactService.getContactBy(offerDto.getUserId());
             offerDto.setFirstName(contact.getFirstname());
             offerDto.setLastName(contact.getLastname());
+
+            offerDto.setUserImageString(String.valueOf(contact.getImage()));
         }
     }
 

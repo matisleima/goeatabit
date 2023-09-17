@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface OfferRepository extends JpaRepository<Offer, Integer> {
 
-    @Query("select o from Offer o where o.status = ?1 order by o.date")
+    @Query("select o from Offer o where o.status = ?1 order by o.date, o.time")
     List<Offer> getOffersBy(String status);
 
     @Query("""
