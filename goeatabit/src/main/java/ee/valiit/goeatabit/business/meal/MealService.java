@@ -53,7 +53,7 @@ public class MealService {
         List<Offer> activeOffers = offerService.getActiveOffers();
         List<OfferDto> offerDtos = offerMapper.toOfferDtos(activeOffers);
         addLocationInfoToOfferDtos(offerDtos);
-        addContactInfoToOfferDtos(offerDtos);
+        addContactAndImageInfoToOfferDtos(offerDtos);
         addPhotoStringToDtos(offerDtos);
         return offerDtos;
     }
@@ -66,13 +66,14 @@ public class MealService {
         }
     }
 
-    private void addContactInfoToOfferDtos(List<OfferDto> offerDtos) {
+    private void addContactAndImageInfoToOfferDtos(List<OfferDto> offerDtos) {
         for (OfferDto offerDto : offerDtos) {
             Contact contact = contactService.getContactBy(offerDto.getUserId());
             offerDto.setFirstName(contact.getFirstname());
             offerDto.setLastName(contact.getLastname());
 
-            offerDto.setUserImageString(String.valueOf(contact.getImage()));
+            String imageString = ImageConverter.imageBytesToImageString(contact.getImage());
+            offerDto.setUserImageString(imageString);
         }
     }
 
