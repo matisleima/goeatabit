@@ -48,7 +48,7 @@ public class MealController {
         return mealService.getOffer(offerId, userId);
     }
 
-    @GetMapping("/offers") //see dubleerib getFilteredOffered meetodit, v.a. image'i äratoomise osas
+    @GetMapping("/offers") //see dubleerib getFilteredOffered meetodit, v.a. image'i äratoomise osas ja tulemuse järjestamise osas
     public List<OfferDto> getOffers() {
         return mealService.getOffers();
     }
