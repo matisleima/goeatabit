@@ -26,7 +26,7 @@ public class MealController {
                                                  @RequestParam Integer foodGroupId,
                                                  @RequestParam String description,
                                                  @RequestParam BigDecimal priceLimit,
-                                                 @RequestParam Integer userId) {
+                                                 @RequestParam Integer userId) { //see on pakkuja ID
 
         FilteredOfferRequest request = FilteredOfferRequest.builder()
                 .districtId(districtId)
@@ -50,7 +50,7 @@ public class MealController {
         return mealService.getOffer(offerId, userId);
     }
 
-    @GetMapping("/offers/last-3") //see dubleerib getFilteredOffered meetodit, v.a. image'i äratoomise osas ja tulemuse järjestamise osas
+    @GetMapping("/offers/last-3")
     public List<LatestOffer> getLastThreeOffers() {
         return mealService.getLastThreeOffers();
     }
@@ -59,12 +59,10 @@ public class MealController {
     public List<NextHotOffer> getNextHotThreeOffers(@RequestParam Integer userId) {
         return mealService.getNextHotThreeOffers(userId);
     }
-
     @PostMapping("/event")
     public void addReservation(@RequestParam Integer offerId, @RequestParam Integer userId) {
         mealService.addEvent(offerId, userId);
     }
-
     @GetMapping("/events")
     public List<EventDto> getMyEvents(@RequestParam Integer userId) {
         return mealService.getMyEvents(userId);

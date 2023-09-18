@@ -163,6 +163,7 @@ public class MealService {
         offer.setUser(user);
         offer.setLocation(location);
         offer.setFoodGroup(foodGroup);
+        offer.setStatus(Status.ACTIVE.getLetter());
         return offer;
     }
 
