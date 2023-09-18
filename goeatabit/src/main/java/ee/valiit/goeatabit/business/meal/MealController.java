@@ -52,6 +52,7 @@ public class MealController {
     public List<OfferDto> getOffers() {
         return mealService.getOffers();
     }
+
     @PostMapping("/event")
     public void addReservation(@RequestParam Integer offerId, @RequestParam Integer userId) {
         mealService.addEvent(offerId, userId);
