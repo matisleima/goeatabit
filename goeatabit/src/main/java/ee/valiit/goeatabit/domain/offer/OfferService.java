@@ -27,9 +27,12 @@ public class OfferService {
 
     }
 
-    public List<Offer> getActiveOffers() {
-        List<Offer> activeOffers = offerRepository.getOffersBy(Status.ACTIVE.getLetter());
-        return activeOffers;
+    public List<Offer> getLastThreeActiveOffers() {
+        return offerRepository.getLastThreeOffers(Status.ACTIVE.getLetter());
+    }
+
+    public List<Offer> getNextTodaysThreeActiveOffersBy(Integer districtId) {
+        return offerRepository.getNextTodaysThreeOffersBy(Status.ACTIVE.getLetter(), districtId);
     }
 
     public void saveOffer(Offer offer) {
@@ -43,5 +46,7 @@ public class OfferService {
     private static boolean hasDate(FilteredOfferRequest request) {
         return !request.getDate().isBlank();
     }
+
+
 
 }

@@ -4,6 +4,8 @@ package ee.valiit.goeatabit.business.meal;
 import ee.valiit.goeatabit.business.meal.dto.EventDto;
 import ee.valiit.goeatabit.business.meal.dto.FilteredOfferRequest;
 import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.offer.dto.LatestOffer;
+import ee.valiit.goeatabit.business.offer.dto.NextHotOffer;
 import ee.valiit.goeatabit.business.offer.dto.OfferDto;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -48,9 +50,14 @@ public class MealController {
         return mealService.getOffer(offerId, userId);
     }
 
-    @GetMapping("/offers") //see dubleerib getFilteredOffered meetodit, v.a. image'i äratoomise osas ja tulemuse järjestamise osas
-    public List<OfferDto> getOffers() {
-        return mealService.getOffers();
+    @GetMapping("/offers/last-3") //see dubleerib getFilteredOffered meetodit, v.a. image'i äratoomise osas ja tulemuse järjestamise osas
+    public List<LatestOffer> getLastThreeOffers() {
+        return mealService.getLastThreeOffers();
+    }
+
+    @GetMapping("/offers/hot-3")
+    public List<NextHotOffer> getNextHotThreeOffers(@RequestParam Integer userId) {
+        return mealService.getNextHotThreeOffers(userId);
     }
 
     @PostMapping("/event")

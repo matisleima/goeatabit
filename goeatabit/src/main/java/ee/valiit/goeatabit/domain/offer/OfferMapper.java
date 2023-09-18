@@ -1,6 +1,8 @@
 package ee.valiit.goeatabit.domain.offer;
 
 import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.offer.dto.LatestOffer;
+import ee.valiit.goeatabit.business.offer.dto.NextHotOffer;
 import ee.valiit.goeatabit.business.offer.dto.OfferDto;
 import org.mapstruct.*;
 
@@ -39,6 +41,13 @@ public interface OfferMapper {
     List<OfferDto> toOfferDtos(List<Offer> offers);
 
 
+    @Mapping(source = "id", target = "offerId")
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "name", target = "offerName")
+    LatestOffer toLatestOffer(Offer offer);
+
+ List   <LatestOffer> toLatestOffers(List <Offer> offers);
+
 
 
 
@@ -48,5 +57,20 @@ public interface OfferMapper {
     @Mapping(source = "offerName", target = "name")
     @Mapping(source = "description", target = "description")
     Offer toOffer(OfferDto request);
+
+
+    @Mapping(source = "id", target = "offerId")
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "name", target = "offerName")
+    @Mapping(source = "time", target = "time", qualifiedByName = "timeIntegerToString")
+    NextHotOffer toNextHotOffer(Offer offer);
+
+    List<NextHotOffer> toNextHotOffers(List<Offer> offers);
+
+
+    @Named("timeIntegerToString")
+    static String timeIntegerToString(Integer time) {
+        return time + ":00";
+    }
 
 }

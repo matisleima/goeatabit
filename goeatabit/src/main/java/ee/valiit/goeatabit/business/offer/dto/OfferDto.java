@@ -10,9 +10,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * DTO for {@link OfferFilterDto}
- */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

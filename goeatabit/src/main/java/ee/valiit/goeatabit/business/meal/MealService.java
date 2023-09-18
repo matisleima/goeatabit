@@ -2,6 +2,8 @@ package ee.valiit.goeatabit.business.meal;
 
 import ee.valiit.goeatabit.business.meal.dto.EventDto;
 import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
+import ee.valiit.goeatabit.business.offer.dto.LatestOffer;
+import ee.valiit.goeatabit.business.offer.dto.NextHotOffer;
 import ee.valiit.goeatabit.business.offer.dto.OfferDto;
 import ee.valiit.goeatabit.domain.event.Event;
 import ee.valiit.goeatabit.domain.event.EventMapper;
@@ -50,13 +52,53 @@ public class MealService {
     private EventMapper eventMapper;
 
 
-    public List<OfferDto> getOffers() {
-        List<Offer> activeOffers = offerService.getActiveOffers();
-        List<OfferDto> offerDtos = offerMapper.toOfferDtos(activeOffers);
-        addLocationInfoToOfferDtos(offerDtos);
-        addContactAndImageInfoToOfferDtos(offerDtos);
-        addPhotoStringToDtos(offerDtos);
-        return offerDtos;
+    public List<LatestOffer> getLastThreeOffers() {
+        List<Offer> offers = offerService.getLastThreeActiveOffers();
+        List<LatestOffer> latestOffers = offerMapper.toLatestOffers(offers);
+        addContactToLatestOffers(latestOffers);
+        return latestOffers;
+    }
+
+    public List<NextHotOffer> getNextHotThreeOffers(Integer userId) {
+        Location location = locationService.getLocationBy(userId);
+        List<Offer> offers = offerService.getNextTodaysThreeActiveOffersBy(location.getDistrict().getId());
+        List<NextHotOffer> nextHotOffers = offerMapper.toNextHotOffers(offers);
+        addContactToNextHotOffers(nextHotOffers);
+        addLocationToNextHotOffers(nextHotOffers);
+        addImageToNextHotOffers(nextHotOffers);
+        return nextHotOffers;
+    }
+
+    private void addImageToNextHotOffers(List<NextHotOffer> nextHotOffers) {
+        for (NextHotOffer nextHotOffer : nextHotOffers) {
+            Contact contact = contactService.getContactBy(nextHotOffer.getUserId());
+            String imageString = ImageConverter.imageBytesToImageString(contact.getImage());
+            nextHotOffer.setImageString(imageString);
+        }
+    }
+
+    private void addLocationToNextHotOffers(List<NextHotOffer> nextHotOffers) {
+        for (NextHotOffer nextHotOffer : nextHotOffers) {
+            Location location = locationService.getLocationBy(nextHotOffer.getUserId());
+            nextHotOffer.setAddress(location.getAddress());
+        }
+    }
+
+    private void addContactToNextHotOffers(List<NextHotOffer> nextHotOffers) {
+        for (NextHotOffer nextHotOffer : nextHotOffers) {
+            Contact contact = contactService.getContactBy(nextHotOffer.getUserId());
+            nextHotOffer.setFirstName(contact.getFirstname());
+            nextHotOffer.setLastName(contact.getLastname());
+        }
+    }
+
+
+    private void addContactToLatestOffers(List<LatestOffer> latestOffers) {
+        for (LatestOffer latestOffer : latestOffers) {
+            Contact contact = contactService.getContactBy(latestOffer.getUserId());
+            latestOffer.setFirstName(contact.getFirstname());
+            latestOffer.setLastName(contact.getLastname());
+        }
     }
 
     private void addLocationInfoToOfferDtos(List<OfferDto> offerDtos) {
@@ -167,4 +209,5 @@ public class MealService {
             eventDto.setAddress(location.getAddress());
         }
     }
+
 }

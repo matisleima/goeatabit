@@ -9,8 +9,11 @@ import java.util.List;
 
 public interface OfferRepository extends JpaRepository<Offer, Integer> {
 
-    @Query("select o from Offer o where o.status = ?1 order by o.date, o.time")
-    List<Offer> getOffersBy(String status);
+    @Query("select o from Offer o where o.status = ?1 order by o.id desc limit 3")
+    List<Offer> getLastThreeOffers(String status);
+
+    @Query("select o from Offer o where o.status = ?1 and o.location.district.id = ?2 and o.date >= CURRENT_DATE order by o.date, o.time limit 3")
+    List<Offer> getNextTodaysThreeOffersBy(String status, Integer districtId);
 
     @Query("""
             select o from Offer o
