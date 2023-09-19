@@ -40,7 +40,6 @@ CREATE TABLE eat.image (
     id serial  NOT NULL,
     data bytea  NOT NULL,
     status char(1)  NOT NULL,
-    food_group_id int NULL,
     CONSTRAINT image_pk PRIMARY KEY (id)
 );
 
