@@ -22,7 +22,7 @@ public interface OfferRepository extends JpaRepository<Offer, Integer> {
             and (o.price <= ?3 or ?3 = 0)
             and o.status = ?4
             and (lower(o.description) LIKE CONCAT('%', lower(?5), '%') or ?5 = '')
-            and (o.date = ?6 or ?6 = date('1984-05-04'))
+            and (o.date = ?6 or ?6 = date('1984-05-04') and o.date >= CURRENT_DATE)
             and (o.user.id = ?7 or ?7 = 0) order by o.date, o.time
             """)
     List<Offer> getFilteredOffersBy(Integer foodGroupId, Integer districtId, BigDecimal priceLimit, String status, String description, LocalDate localDate, Integer userId);
