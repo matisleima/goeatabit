@@ -136,13 +136,6 @@ ALTER TABLE eat.contact ADD CONSTRAINT contact_user
     REFERENCES eat."user" (id)
     NOT DEFERRABLE
     INITIALLY IMMEDIATE
-
-;-- Reference: image_food_group (table: image)
-ALTER TABLE eat.image ADD CONSTRAINT image_food_group
-    FOREIGN KEY (food_group_id)
-    REFERENCES eat.food_group (id)
-    NOT DEFERRABLE
-    INITIALLY IMMEDIATE
 ;
 
 -- Reference: location_district (table: location)
@@ -187,8 +180,8 @@ ALTER TABLE eat.offer ADD CONSTRAINT offer_user
 -- Reference: rating_user (table: rating)
 ALTER TABLE eat.rating ADD CONSTRAINT rating_user
     FOREIGN KEY (user_id)
-    REFERENCES eat."user" (id)  
-    NOT DEFERRABLE 
+    REFERENCES eat."user" (id)
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
