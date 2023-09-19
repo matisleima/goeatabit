@@ -1,5 +1,6 @@
 package ee.valiit.goeatabit.business.offer.dto;
 
+import ee.valiit.goeatabit.domain.foodgroup.FoodGroup;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,5 @@ public class FilteredOffer implements Serializable {
     private BigDecimal price;
     private Integer totalPortions;
     private BigDecimal userRating;
+    private Integer foodGroupId;
 }

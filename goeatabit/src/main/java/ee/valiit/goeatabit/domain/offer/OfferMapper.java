@@ -20,6 +20,7 @@ public interface OfferMapper {
     @Mapping(source = "name", target = "offerName")
     @Mapping(source = "description", target = "description")
     @Mapping(source = "location.address", target = "address")
+    @Mapping(source = "foodGroup.id", target = "foodGroupId")
     FilteredOffer toFilteredOffer(Offer offer);
 
     List<FilteredOffer> toFilteredOffers(List<Offer> offer);
