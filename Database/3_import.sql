@@ -24,9 +24,9 @@ INSERT INTO eat.contact (id, user_id, image_id, firstname, lastname) VALUES (def
 INSERT INTO eat.contact (id, user_id, image_id, firstname, lastname) VALUES (default, 2, 2, 'Matis', 'Leima');
 INSERT INTO eat.contact (id, user_id, image_id, firstname, lastname) VALUES (default, 3, 3, 'Nikolai', 'Levitski');
 
-INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 1, 'Aia tn 7', 2, null, null);
-INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 2, 'Vabaduse väljak 1', 7, null, null);
-INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 3, 'Sõpruse pst 2', 3, null, null);
+INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 1, 'Aia tn 7', 1, null, null);
+INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 2, 'Vabaduse väljak 1', 1, null, null);
+INSERT INTO eat.location (id, user_id, address, district_id, longitude, latitude) VALUES (default, 3, 'Sõpruse pst 2', 1, null, null);
 
 INSERT INTO eat.food_group (id, name) VALUES (DEFAULT, 'supp');
 INSERT INTO eat.food_group (id, name) VALUES (DEFAULT, 'puder');

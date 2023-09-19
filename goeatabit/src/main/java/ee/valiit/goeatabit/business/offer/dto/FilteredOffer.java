@@ -23,6 +23,6 @@ public class FilteredOffer implements Serializable {
     private String firstName;
     private String lastName;
     private BigDecimal price;
-    private Integer availableMeals;
+    private Integer totalPortions;
     private BigDecimal userRating;
 }
