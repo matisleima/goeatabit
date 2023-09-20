@@ -49,6 +49,15 @@ public class MealController {
     public OfferDto getOffer(@RequestParam Integer offerId, @RequestParam Integer userId) {
         return mealService.getOffer(offerId, userId);
     }
+    @PutMapping("/offer")
+    public void updateOffer(@RequestParam Integer offerId, @RequestBody OfferDto request) {
+        mealService.updateOffer(offerId, request);
+    }
+
+    @DeleteMapping("/offer")
+    public void deleteOffer(@RequestParam Integer offerId) {
+        mealService.deleteOffer(offerId);
+    }
 
     @GetMapping("/offers/last-3")
     public List<LatestOffer> getLastThreeOffers() {
