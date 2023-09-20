@@ -14,19 +14,12 @@ import java.util.List;
 
 @Service
 public class DistrictsService {
-
     @Resource
     private DistrictService districtService;
-
     @Resource
     private DistrictMapper districtMapper;
-
     @Resource
     private LocationService locationService;
-
-    @Resource
-    private LocationMapper locationMapper;
-
 
     public List<DistrictDto> getDistricts() {
         List<District> districts = districtService.getDistricts();
@@ -34,8 +27,10 @@ public class DistrictsService {
         return districtDtos;
     }
 
-    public DistrictDto getDistrict(Integer userId) {
+    public String getDistrict(Integer userId) {
         Location location = locationService.getLocationBy(userId);
-        return locationMapper.toDistrictDto(location);
+        String districtName = location.getDistrict().getName().toUpperCase();
+        return districtName;
+
     }
 }

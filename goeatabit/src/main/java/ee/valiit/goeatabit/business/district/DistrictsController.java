@@ -21,7 +21,7 @@ public class DistrictsController {
     }
 
     @GetMapping("/district")
-    public DistrictDto getDistrict(@RequestParam Integer userId) {
+    public String getDistrict(@RequestParam Integer userId) {
         return districtsService.getDistrict(userId);
     }
 }
