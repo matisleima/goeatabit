@@ -68,4 +68,8 @@ public class MealController {
         return mealService.getMyEvents(userId);
     }
 
+    @DeleteMapping("/event")
+    public void deleteEvent(@RequestParam Integer eventId) {
+        mealService.deleteEvent(eventId);
+    }
 }

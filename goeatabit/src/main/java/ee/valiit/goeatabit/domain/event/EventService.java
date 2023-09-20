@@ -1,5 +1,6 @@
 package ee.valiit.goeatabit.domain.event;
 
+import ee.valiit.goeatabit.validation.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,10 @@ public class EventService {
     }
 
     public List<Event> getMyEvents(Integer userId) {
-        return eventRepository.getEventsBy(userId);
+        return eventRepository.getActiveEventsBy(userId, Status.ACTIVE.getLetter());
+    }
+
+    public Event getEventBy(Integer eventId) {
+        return eventRepository.getEventby(eventId);
     }
 }

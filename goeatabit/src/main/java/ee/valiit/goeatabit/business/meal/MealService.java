@@ -211,4 +211,9 @@ public class MealService {
         }
     }
 
+    public void deleteEvent(Integer eventId) {
+        Event event = eventService.getEventBy(eventId);
+        event.setStatus(Status.DELETED.getLetter());
+        eventService.saveEvent(event);
+    }
 }
