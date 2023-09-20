@@ -186,7 +186,8 @@ public class MealService {
 
     private void handleOfferUpdate(Integer offerId, OfferDto request) {
         Offer offer = offerService.getOfferBy(offerId);
-
+        offerMapper.partialUpdate(request, offer);
+        offerService.saveOffer(offer);
     }
 
     private void addContactAndLocationDataToSelectedOfferDto(Integer userId, OfferDto selectedOfferDto) {

@@ -47,9 +47,7 @@ public interface OfferMapper {
     @Mapping(source = "name", target = "offerName")
     LatestOffer toLatestOffer(Offer offer);
 
- List   <LatestOffer> toLatestOffers(List <Offer> offers);
-
-
+    List<LatestOffer> toLatestOffers(List<Offer> offers);
 
 
     @Mapping(source = "time", target = "time")
@@ -67,6 +65,11 @@ public interface OfferMapper {
     NextHotOffer toNextHotOffer(Offer offer);
 
     List<NextHotOffer> toNextHotOffers(List<Offer> offers);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(source = "offerName", target = "name")
+    @Mapping(source = "foodGroupId", target = "foodGroup.id")
+    Offer partialUpdate(OfferDto request, @MappingTarget Offer originalOffer);
 
 
     @Named("timeIntegerToString")
