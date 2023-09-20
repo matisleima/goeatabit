@@ -48,5 +48,7 @@ public class OfferService {
     }
 
 
-
+    public Offer getOfferBy(Integer offerId) {
+        return offerRepository.getReferenceById(offerId);
+    }
 }

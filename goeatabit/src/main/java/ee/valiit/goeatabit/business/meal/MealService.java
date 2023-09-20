@@ -174,6 +174,21 @@ public class MealService {
         return selectedOfferDto;
     }
 
+    @Transactional
+    public void updateOffer(Integer offerId, OfferDto request) {
+        handleOfferUpdate(offerId, request);
+    }
+    public void deleteOffer(Integer offerId) {
+        Offer offer = offerService.getOfferBy(offerId);
+        offer.setStatus(Status.DELETED.getLetter());
+        offerService.saveOffer(offer);
+    }
+
+    private void handleOfferUpdate(Integer offerId, OfferDto request) {
+        Offer offer = offerService.getOfferBy(offerId);
+
+    }
+
     private void addContactAndLocationDataToSelectedOfferDto(Integer userId, OfferDto selectedOfferDto) {
         Contact contact = contactService.getContactBy(userId);
         selectedOfferDto.setFirstName(contact.getFirstname());
