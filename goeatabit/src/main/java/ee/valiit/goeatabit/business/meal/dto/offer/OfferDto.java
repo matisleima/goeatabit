@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.dto;
+package ee.valiit.goeatabit.business.meal.dto.offer;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -10,13 +10,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * DTO for {@link OfferFilterDto}
- */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OfferInfo implements Serializable {
+public class OfferDto implements Serializable {
     private Integer offerId;
     private Integer userId;
     private BigDecimal userRating;
@@ -49,5 +47,7 @@ public class OfferInfo implements Serializable {
     private String lastName;
 
     private String imageString;
+
+    private String userImageString;
 
 }

@@ -1,10 +1,7 @@
 package ee.valiit.goeatabit.business.meal;
 
 import ee.valiit.goeatabit.business.meal.dto.EventDto;
-import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
-import ee.valiit.goeatabit.business.offer.dto.LatestOffer;
-import ee.valiit.goeatabit.business.offer.dto.NextHotOffer;
-import ee.valiit.goeatabit.business.offer.dto.OfferDto;
+import ee.valiit.goeatabit.business.meal.dto.offer.*;
 import ee.valiit.goeatabit.domain.event.Event;
 import ee.valiit.goeatabit.domain.event.EventMapper;
 import ee.valiit.goeatabit.domain.event.EventService;
@@ -121,7 +118,6 @@ public class MealService {
     }
 
     public List<FilteredOffer> getFilteredOffers(FilteredOfferRequest request) {
-
         List<Offer> offers = offerService.getFilteredOffers(request);
         List<FilteredOffer> filteredOffers = offerMapper.toFilteredOffers(offers);
         addContactInfoToFilteredOffers(filteredOffers);
@@ -167,16 +163,20 @@ public class MealService {
         return offer;
     }
 
-    public OfferDto getOffer(Integer offerId, Integer userId) {
-        Offer selectedOffer = offerService.getOffer(offerId);
-        OfferDto selectedOfferDto = offerMapper.toOfferDto(selectedOffer);
-        addContactAndLocationDataToSelectedOfferDto(userId, selectedOfferDto);
-        return selectedOfferDto;
+    public BookingConfirmationInfo getOfferBasicInfo(Integer offerId) {
+        Offer offer = offerService.getOfferBy(offerId);
+        BookingConfirmationInfo bookingConfirmationInfo = offerMapper.toBookingConfirmInfo(offer);
+        addContactAndLocationDataToSelectedOfferDto(offer.getUser().getId(), bookingConfirmationInfo);
+        return bookingConfirmationInfo;
     }
 
     @Transactional
-    public void updateOffer(Integer offerId, OfferDto request) {
-        handleOfferUpdate(offerId, request);
+    public void updateOffer(Integer offerId, OfferInfo request) {
+        FoodGroup foodGroup = foodGroupsService.getFoodGroupBy(request.getFoodGroupId());
+        Offer offer = offerService.getOfferBy(offerId);
+        offerMapper.partialUpdate(request, offer);
+        offer.setFoodGroup(foodGroup);
+        offerService.saveOffer(offer);
     }
     public void deleteOffer(Integer offerId) {
         Offer offer = offerService.getOfferBy(offerId);
@@ -184,22 +184,18 @@ public class MealService {
         offerService.saveOffer(offer);
     }
 
-    private void handleOfferUpdate(Integer offerId, OfferDto request) {
-        Offer offer = offerService.getOfferBy(offerId);
-        offerMapper.partialUpdate(request, offer);
-        offerService.saveOffer(offer);
-    }
 
-    private void addContactAndLocationDataToSelectedOfferDto(Integer userId, OfferDto selectedOfferDto) {
+
+    private void addContactAndLocationDataToSelectedOfferDto(Integer userId, BookingConfirmationInfo bookingConfirmationInfo) {
         Contact contact = contactService.getContactBy(userId);
-        selectedOfferDto.setFirstName(contact.getFirstname());
-        selectedOfferDto.setLastName(contact.getLastname());
+        bookingConfirmationInfo.setFirstName(contact.getFirstname());
+        bookingConfirmationInfo.setLastName(contact.getLastname());
         Location location = locationService.getLocationBy(userId);
-        selectedOfferDto.setAddress(location.getAddress());
+        bookingConfirmationInfo.setAddress(location.getAddress());
     }
 
     public void addEvent(Integer offerId, Integer userId) {
-        Offer offer = offerService.getOffer(offerId);
+        Offer offer = offerService.getOfferBy(offerId);
         User user = userService.getUserBy(userId);
 
         Event event = new Event();
@@ -232,4 +228,10 @@ public class MealService {
         event.setStatus(Status.DELETED.getLetter());
         eventService.saveEvent(event);
     }
+
+    public OfferInfo getOfferInfo(Integer offerId) {
+        Offer offer = offerService.getOfferBy(offerId);
+        return offerMapper.toOfferInfo(offer);
+    }
+
 }

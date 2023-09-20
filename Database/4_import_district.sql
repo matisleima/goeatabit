@@ -1,0 +1,9 @@
+INSERT INTO eat.district (id, name) VALUES (default, 'Vanalinn');
+INSERT INTO eat.district (id, name) VALUES (default, 'Kesklinn');
+INSERT INTO eat.district (id, name) VALUES (default, 'Mustamäe');
+INSERT INTO eat.district (id, name) VALUES (default, 'Lasnamäe');
+INSERT INTO eat.district (id, name) VALUES (default, 'Pirita');
+INSERT INTO eat.district (id, name) VALUES (default, 'Kristiine');
+INSERT INTO eat.district (id, name) VALUES (default, 'Nõmme');
+INSERT INTO eat.district (id, name) VALUES (default, 'Õismäe');
+INSERT INTO eat.district (id, name) VALUES (default, 'Põhja-Tallinn');

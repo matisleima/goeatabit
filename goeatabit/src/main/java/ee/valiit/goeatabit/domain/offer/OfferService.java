@@ -39,10 +39,6 @@ public class OfferService {
         offerRepository.save(offer);
     }
 
-    public Offer getOffer(Integer offerId) {
-        return offerRepository.getActiveOfferBy(offerId, Status.ACTIVE.getLetter());
-    }
-
     private static boolean hasDate(FilteredOfferRequest request) {
         return !request.getDate().isBlank();
     }

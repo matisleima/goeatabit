@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.offer.dto;
+package ee.valiit.goeatabit.business.meal.dto.offer;
 
 import ee.valiit.goeatabit.domain.foodgroup.FoodGroup;
 import lombok.AllArgsConstructor;

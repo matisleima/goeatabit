@@ -1,4 +1,4 @@
-package ee.valiit.goeatabit.business.offer.dto;
+package ee.valiit.goeatabit.business.meal.dto.offer;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NextHotOffer implements Serializable {
+public class LatestOffer implements Serializable {
     @NotNull
     private Integer offerId;
     @NotNull
@@ -25,11 +25,6 @@ public class NextHotOffer implements Serializable {
     private String firstName;
     @NotNull
     private String lastName;
-
-    private String imageString;
-    private String address;
-    private String time;
-
 
 
 }

@@ -1,9 +1,6 @@
 package ee.valiit.goeatabit.domain.offer;
 
-import ee.valiit.goeatabit.business.offer.dto.FilteredOffer;
-import ee.valiit.goeatabit.business.offer.dto.LatestOffer;
-import ee.valiit.goeatabit.business.offer.dto.NextHotOffer;
-import ee.valiit.goeatabit.business.offer.dto.OfferDto;
+import ee.valiit.goeatabit.business.meal.dto.offer.*;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -66,10 +63,10 @@ public interface OfferMapper {
 
     List<NextHotOffer> toNextHotOffers(List<Offer> offers);
 
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(source = "offerName", target = "name")
-    @Mapping(source = "foodGroupId", target = "foodGroup.id")
-    Offer partialUpdate(OfferDto request, @MappingTarget Offer originalOffer);
+    Offer partialUpdate(OfferInfo request, @MappingTarget Offer originalOffer);
 
 
     @Named("timeIntegerToString")
@@ -77,4 +74,21 @@ public interface OfferMapper {
         return time + ":00";
     }
 
+
+    @Mapping(source = "user.rating", target = "userRating")
+    @Mapping(source = "time", target = "time")
+    @Mapping(source = "date", target = "date")
+    @Mapping(source = "price", target = "price")
+    @Mapping(source = "name", target = "offerName")
+    @Mapping(source = "description", target = "description")
+    BookingConfirmationInfo toBookingConfirmInfo(Offer offer);
+
+    @Mapping(source = "time", target = "time")
+    @Mapping(source = "date", target = "date")
+    @Mapping(source = "price", target = "price")
+    @Mapping(source = "totalPortions", target = "totalPortions")
+    @Mapping(source = "name", target = "offerName")
+    @Mapping(source = "description", target = "description")
+    @Mapping(source = "foodGroup.id", target = "foodGroupId")
+    OfferInfo toOfferInfo(Offer offer);
 }
