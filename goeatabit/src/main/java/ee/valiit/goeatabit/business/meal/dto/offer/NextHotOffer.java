@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.time.LocalDate;
 
 
@@ -29,7 +30,7 @@ public class NextHotOffer implements Serializable {
 
     private String imageString;
     private String address;
-    private String time;
+    private Time time;
     private LocalDate date;
 
 

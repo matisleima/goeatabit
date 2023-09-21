@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.time.LocalDate;
 
 @Data
@@ -17,7 +18,7 @@ public class OfferInfo implements Serializable {
     @NotNull
     private LocalDate date;
     @NotNull
-    private Integer time;
+    private Time time;
     @NotNull
     private Integer foodGroupId;
     @NotNull

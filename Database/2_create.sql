@@ -60,7 +60,7 @@ CREATE TABLE eat.offer (
                            id serial  NOT NULL,
                            user_id int  NOT NULL,
                            location_id int  NOT NULL,
-                           time int  NOT NULL,
+                           time time  NOT NULL,
                            date date  NOT NULL,
                            price decimal(4,2)  NOT NULL,
                            total_portions int  NOT NULL,

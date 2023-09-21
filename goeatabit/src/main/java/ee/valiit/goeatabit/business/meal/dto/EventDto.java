@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.time.LocalDate;
 
 /**
@@ -22,7 +23,7 @@ public class EventDto implements Serializable {
     private Integer offerId;
     private Integer offerUserId;
     private BigDecimal offerUserRating;
-    private Integer time;
+    private Time time;
     private LocalDate date;
     private BigDecimal price;
     private Integer totalPortions;

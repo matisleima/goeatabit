@@ -59,7 +59,7 @@ public interface OfferMapper {
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "name", target = "offerName")
     @Mapping(source = "date", target = "date")
-    @Mapping(source = "time", target = "time", qualifiedByName = "timeIntegerToString")
+    @Mapping(source = "time", target = "time")
     NextHotOffer toNextHotOffer(Offer offer);
 
     List<NextHotOffer> toNextHotOffers(List<Offer> offers);
@@ -70,10 +70,7 @@ public interface OfferMapper {
     Offer partialUpdate(OfferInfo request, @MappingTarget Offer originalOffer);
 
 
-    @Named("timeIntegerToString")
-    static String timeIntegerToString(Integer time) {
-        return time + ":00";
-    }
+
 
 
     @Mapping(source = "user.rating", target = "userRating")

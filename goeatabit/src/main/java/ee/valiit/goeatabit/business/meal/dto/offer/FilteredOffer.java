@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.time.LocalDate;
 
 
@@ -19,7 +20,7 @@ public class FilteredOffer implements Serializable {
     private String offerName;
     private String description;
     private LocalDate date;
-    private Integer time;
+    private Time time;
     private String address;
     private String firstName;
     private String lastName;

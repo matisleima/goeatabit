@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.time.LocalDate;
 
 @Getter
@@ -34,7 +35,7 @@ public class Offer {
 
     @NotNull
     @Column(name = "\"time\"", nullable = false)
-    private Integer time;
+    private Time time;
 
     @NotNull
     @Column(name = "date", nullable = false)

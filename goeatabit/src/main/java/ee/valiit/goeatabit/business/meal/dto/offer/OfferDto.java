@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.time.LocalDate;
 
 
@@ -19,7 +20,7 @@ public class OfferDto implements Serializable {
     private Integer userId;
     private BigDecimal userRating;
     @NotNull
-    private Integer time;
+    private Time time;
     @NotNull
     private LocalDate date;
     @NotNull
