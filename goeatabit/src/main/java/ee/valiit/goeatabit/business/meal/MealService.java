@@ -121,9 +121,16 @@ public class MealService {
         List<Offer> offers = offerService.getFilteredOffers(request);
         List<FilteredOffer> filteredOffers = offerMapper.toFilteredOffers(offers);
         addContactInfoToFilteredOffers(filteredOffers);
+        addBookingInfoToFilteredOffers(filteredOffers);
         return filteredOffers;
     }
 
+    private void addBookingInfoToFilteredOffers(List<FilteredOffer> filteredOffers) {
+        for (FilteredOffer filteredOffer : filteredOffers) {
+            long bookings = eventService.getEventsBy(filteredOffer.getOfferId());
+            filteredOffer.setBookings(bookings);
+        }
+    }
     private void addContactInfoToFilteredOffers(List<FilteredOffer> filteredOffers) {
         for (FilteredOffer filteredOffer : filteredOffers) {
             Contact contact = contactService.getContactBy(filteredOffer.getUserId());

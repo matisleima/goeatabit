@@ -23,4 +23,10 @@ public class EventService {
     public Event getEventBy(Integer eventId) {
         return eventRepository.getEventby(eventId);
     }
+
+    public long getEventsBy(Integer offerId) {
+        long bookings = eventRepository.getEventsCountBy(offerId);
+        return bookings;
+
+    }
 }

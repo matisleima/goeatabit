@@ -11,4 +11,9 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     @Query("select e from Event e where e.id = ?1")
     Event getEventby(Integer eventId);
+
+    @Query("select count(e) from Event e where e.offer.id = ?1")
+    long getEventsCountBy(Integer offerId);
+
+
 }

@@ -28,4 +28,5 @@ public class FilteredOffer implements Serializable {
     private Integer totalPortions;
     private BigDecimal userRating;
     private Integer foodGroupId;
+    private Long bookings;
 }
