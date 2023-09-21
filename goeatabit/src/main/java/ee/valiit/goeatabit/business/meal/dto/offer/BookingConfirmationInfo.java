@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class BookingConfirmationInfo implements Serializable {
     private LocalDate date;
-    private Time time;
+    private String time;
     private String address;
     private String firstName;
     private String lastName;
