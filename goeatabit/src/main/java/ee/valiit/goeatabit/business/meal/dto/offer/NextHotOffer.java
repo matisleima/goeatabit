@@ -30,7 +30,7 @@ public class NextHotOffer implements Serializable {
 
     private String imageString;
     private String address;
-    private Time time;
+    private String time;
     private LocalDate date;
 
 

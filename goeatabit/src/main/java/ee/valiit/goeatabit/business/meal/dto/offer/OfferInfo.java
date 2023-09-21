@@ -18,7 +18,7 @@ public class OfferInfo implements Serializable {
     @NotNull
     private LocalDate date;
     @NotNull
-    private Time time;
+    private String time;
     @NotNull
     private Integer foodGroupId;
     @NotNull

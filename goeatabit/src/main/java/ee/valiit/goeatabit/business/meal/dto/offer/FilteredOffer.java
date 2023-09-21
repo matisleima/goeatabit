@@ -20,7 +20,7 @@ public class FilteredOffer implements Serializable {
     private String offerName;
     private String description;
     private LocalDate date;
-    private Time time;
+    private String time;
     private String address;
     private String firstName;
     private String lastName;

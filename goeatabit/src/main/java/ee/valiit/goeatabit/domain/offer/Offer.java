@@ -35,7 +35,7 @@ public class Offer {
 
     @NotNull
     @Column(name = "\"time\"", nullable = false)
-    private Time time;
+    private String time;
 
     @NotNull
     @Column(name = "date", nullable = false)

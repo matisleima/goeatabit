@@ -23,7 +23,7 @@ public class EventDto implements Serializable {
     private Integer offerId;
     private Integer offerUserId;
     private BigDecimal offerUserRating;
-    private Time time;
+    private String time;
     private LocalDate date;
     private BigDecimal price;
     private Integer totalPortions;
