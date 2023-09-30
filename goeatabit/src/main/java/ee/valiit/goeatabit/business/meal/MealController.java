@@ -68,9 +68,6 @@ public class MealController {
         return mealService.getOfferBasicInfo(offerId);
     }
 
-
-
-
     @GetMapping("/offers/last-3")
     public List<LatestOffer> getLastThreeOffers() {
         return mealService.getLastThreeOffers();
