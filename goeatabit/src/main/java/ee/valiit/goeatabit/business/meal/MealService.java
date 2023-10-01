@@ -127,7 +127,7 @@ public class MealService {
 
     private void addBookingInfoToFilteredOffers(List<FilteredOffer> filteredOffers) {
         for (FilteredOffer filteredOffer : filteredOffers) {
-            long bookings = eventService.getEventsBy(filteredOffer.getOfferId());
+            long bookings = eventService.getActiveEventsBy(filteredOffer.getOfferId());
             filteredOffer.setBookings(bookings);
         }
     }

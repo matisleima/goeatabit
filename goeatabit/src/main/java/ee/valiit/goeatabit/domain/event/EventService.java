@@ -24,8 +24,8 @@ public class EventService {
         return eventRepository.getEventby(eventId);
     }
 
-    public long getEventsBy(Integer offerId) {
-        long bookings = eventRepository.getEventsCountBy(offerId);
+    public long getActiveEventsBy(Integer offerId) {
+        long bookings = eventRepository.getEventsCountBy(offerId, Status.ACTIVE.getLetter());
         return bookings;
 
     }
