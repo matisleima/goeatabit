@@ -19,7 +19,6 @@ public class UserService {
         return ValidationService.getValidUser(optionalUser);
     }
 
-
     public void confirmUserAvailability(String email) {
         boolean userEmailExists = userRepository.userExistsBy(email);
         ValidationService.validateEmailIsAvailable(userEmailExists);
@@ -27,7 +26,6 @@ public class UserService {
 
     public User getUserBy(Integer userId) {
         return userRepository.getReferenceById(userId);
-
     }
 
     public void saveUser(User user) {

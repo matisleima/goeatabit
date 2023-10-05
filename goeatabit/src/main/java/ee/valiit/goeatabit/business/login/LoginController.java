@@ -16,5 +16,4 @@ public class LoginController {
     public LoginResponse login(@RequestParam String email, @RequestParam String password) {
         return loginService.login(email, password);
     }
-
 }

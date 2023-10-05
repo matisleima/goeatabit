@@ -49,6 +49,14 @@ public class MealService {
     private EventMapper eventMapper;
 
 
+    public List<FilteredOffer> getFilteredOffers(FilteredOfferRequest request) {
+        List<Offer> offers = offerService.getFilteredOffers(request);
+        List<FilteredOffer> filteredOffers = offerMapper.toFilteredOffers(offers);
+        addContactInfoToFilteredOffers(filteredOffers);
+        addBookingInfoToFilteredOffers(filteredOffers);
+        return filteredOffers;
+    }
+
     public List<LatestOffer> getLastThreeOffers() {
         List<Offer> offers = offerService.getLastThreeActiveOffers();
         List<LatestOffer> latestOffers = offerMapper.toLatestOffers(offers);
@@ -64,6 +72,62 @@ public class MealService {
         addLocationToNextHotOffers(nextHotOffers);
         addImageToNextHotOffers(nextHotOffers);
         return nextHotOffers;
+    }
+
+    @Transactional
+    public void addOffer(OfferDto request) {
+        createAndSaveOffer(request);
+    }
+
+    public BookingConfirmationInfo getOfferBasicInfo(Integer offerId) {
+        Offer offer = offerService.getOfferBy(offerId);
+        BookingConfirmationInfo bookingConfirmationInfo = offerMapper.toBookingConfirmInfo(offer);
+        addContactAndLocationDataToSelectedOfferDto(offer.getUser().getId(), bookingConfirmationInfo);
+        return bookingConfirmationInfo;
+    }
+
+    @Transactional
+    public void updateOffer(Integer offerId, OfferInfo request) {
+        FoodGroup foodGroup = foodGroupsService.getFoodGroupBy(request.getFoodGroupId());
+        Offer offer = offerService.getOfferBy(offerId);
+        offerMapper.partialUpdate(request, offer);
+        offer.setFoodGroup(foodGroup);
+        offerService.saveOffer(offer);
+    }
+    public void deleteOffer(Integer offerId) {
+        Offer offer = offerService.getOfferBy(offerId);
+        offer.setStatus(Status.DELETED.getLetter());
+        offerService.saveOffer(offer);
+    }
+
+    public void addEvent(Integer offerId, Integer userId) {
+        Offer offer = offerService.getOfferBy(offerId);
+        User user = userService.getUserBy(userId);
+
+        Event event = new Event();
+        event.setOffer(offer);
+        event.setUser(user);
+        event.setStatus(Status.ACTIVE.getLetter());
+
+        eventService.saveEvent(event);
+    }
+
+    public List<EventDto> getMyEvents(Integer userId) {
+        List<Event> myEvents = eventService.getMyEvents(userId);
+        List<EventDto> myEventDtos = eventMapper.toEventDtos(myEvents);
+        addContactAndLocationDataToMyEventsDtos(myEventDtos);
+        return myEventDtos;
+    }
+
+    public void deleteEvent(Integer eventId) {
+        Event event = eventService.getEventBy(eventId);
+        event.setStatus(Status.DELETED.getLetter());
+        eventService.saveEvent(event);
+    }
+
+    public OfferInfo getOfferInfo(Integer offerId) {
+        Offer offer = offerService.getOfferBy(offerId);
+        return offerMapper.toOfferInfo(offer);
     }
 
     private void addImageToNextHotOffers(List<NextHotOffer> nextHotOffers) {
@@ -88,7 +152,6 @@ public class MealService {
             nextHotOffer.setLastName(contact.getLastname());
         }
     }
-
 
     private void addContactToLatestOffers(List<LatestOffer> latestOffers) {
         for (LatestOffer latestOffer : latestOffers) {
@@ -117,20 +180,13 @@ public class MealService {
         }
     }
 
-    public List<FilteredOffer> getFilteredOffers(FilteredOfferRequest request) {
-        List<Offer> offers = offerService.getFilteredOffers(request);
-        List<FilteredOffer> filteredOffers = offerMapper.toFilteredOffers(offers);
-        addContactInfoToFilteredOffers(filteredOffers);
-        addBookingInfoToFilteredOffers(filteredOffers);
-        return filteredOffers;
-    }
-
     private void addBookingInfoToFilteredOffers(List<FilteredOffer> filteredOffers) {
         for (FilteredOffer filteredOffer : filteredOffers) {
             long bookings = eventService.getActiveEventsBy(filteredOffer.getOfferId());
             filteredOffer.setBookings(bookings);
         }
     }
+
     private void addContactInfoToFilteredOffers(List<FilteredOffer> filteredOffers) {
         for (FilteredOffer filteredOffer : filteredOffers) {
             Contact contact = contactService.getContactBy(filteredOffer.getUserId());
@@ -145,11 +201,6 @@ public class MealService {
             String imageString = ImageConverter.imageBytesToImageString(image);
             offerDto.setImageString(imageString);
         }
-    }
-
-    @Transactional
-    public void addOffer(OfferDto request) {
-        createAndSaveOffer(request);
     }
 
     private void createAndSaveOffer(OfferDto request) {
@@ -170,54 +221,12 @@ public class MealService {
         return offer;
     }
 
-    public BookingConfirmationInfo getOfferBasicInfo(Integer offerId) {
-        Offer offer = offerService.getOfferBy(offerId);
-        BookingConfirmationInfo bookingConfirmationInfo = offerMapper.toBookingConfirmInfo(offer);
-        addContactAndLocationDataToSelectedOfferDto(offer.getUser().getId(), bookingConfirmationInfo);
-        return bookingConfirmationInfo;
-    }
-
-    @Transactional
-    public void updateOffer(Integer offerId, OfferInfo request) {
-        FoodGroup foodGroup = foodGroupsService.getFoodGroupBy(request.getFoodGroupId());
-        Offer offer = offerService.getOfferBy(offerId);
-        offerMapper.partialUpdate(request, offer);
-        offer.setFoodGroup(foodGroup);
-        offerService.saveOffer(offer);
-    }
-    public void deleteOffer(Integer offerId) {
-        Offer offer = offerService.getOfferBy(offerId);
-        offer.setStatus(Status.DELETED.getLetter());
-        offerService.saveOffer(offer);
-    }
-
-
-
     private void addContactAndLocationDataToSelectedOfferDto(Integer userId, BookingConfirmationInfo bookingConfirmationInfo) {
         Contact contact = contactService.getContactBy(userId);
         bookingConfirmationInfo.setFirstName(contact.getFirstname());
         bookingConfirmationInfo.setLastName(contact.getLastname());
         Location location = locationService.getLocationBy(userId);
         bookingConfirmationInfo.setAddress(location.getAddress());
-    }
-
-    public void addEvent(Integer offerId, Integer userId) {
-        Offer offer = offerService.getOfferBy(offerId);
-        User user = userService.getUserBy(userId);
-
-        Event event = new Event();
-        event.setOffer(offer);
-        event.setUser(user);
-        event.setStatus(Status.ACTIVE.getLetter());
-
-        eventService.saveEvent(event);
-    }
-
-    public List<EventDto> getMyEvents(Integer userId) {
-        List<Event> myEvents = eventService.getMyEvents(userId);
-        List<EventDto> myEventDtos = eventMapper.toEventDtos(myEvents);
-        addContactAndLocationDataToMyEventsDtos(myEventDtos);
-        return myEventDtos;
     }
 
     private void addContactAndLocationDataToMyEventsDtos(List<EventDto> myEventDtos) {
@@ -229,16 +238,4 @@ public class MealService {
             eventDto.setAddress(location.getAddress());
         }
     }
-
-    public void deleteEvent(Integer eventId) {
-        Event event = eventService.getEventBy(eventId);
-        event.setStatus(Status.DELETED.getLetter());
-        eventService.saveEvent(event);
-    }
-
-    public OfferInfo getOfferInfo(Integer offerId) {
-        Offer offer = offerService.getOfferBy(offerId);
-        return offerMapper.toOfferInfo(offer);
-    }
-
 }

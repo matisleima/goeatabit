@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class LocationService {
 
-
     @Resource
     private LocationRepository locationRepository;
 
@@ -17,5 +16,4 @@ public class LocationService {
     public Location getLocationBy(Integer userId) {
         return locationRepository.getLocationBy(userId);
     }
-
 }

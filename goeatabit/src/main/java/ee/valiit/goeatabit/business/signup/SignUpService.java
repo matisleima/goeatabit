@@ -45,14 +45,12 @@ public class SignUpService {
     private LocationMapper locationMapper;
 
 
-
     public void signUp(SignUpRequest signUpRequest) {
         userService.confirmUserAvailability(signUpRequest.getEmail());
         User user = createAndSaveUser(signUpRequest);
         createAndSaveRating(user);
         Image image = createImage(signUpRequest);
         createAndSaveContact(signUpRequest, user, image);
-
 
         Location location = locationMapper.toLocation(signUpRequest);
         location.setUser(user);
@@ -89,7 +87,6 @@ public class SignUpService {
         imageService.saveImage(image);
         return image;
     }
-
 
     private void createAndSaveRating(User user) {
         Rating rating = new Rating();

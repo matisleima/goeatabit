@@ -23,12 +23,10 @@ public class MealController {
         mealService.addOffer(request);
     }
 
-
     @GetMapping("/offer")
     public OfferInfo getOfferInfo(@RequestParam Integer offerId) {
         return mealService.getOfferInfo(offerId);
     }
-
 
     @PutMapping("/offer")
     public void updateOffer(@RequestParam Integer offerId, @RequestBody OfferInfo request) {
@@ -39,7 +37,6 @@ public class MealController {
     public void deleteOffer(@RequestParam Integer offerId) {
         mealService.deleteOffer(offerId);
     }
-
 
     @GetMapping("/filtered-offers")
     public List<FilteredOffer> getFilteredOffers(@RequestParam Integer districtId,
@@ -61,13 +58,10 @@ public class MealController {
         return mealService.getFilteredOffers(request);
     }
 
-
-
     @GetMapping("/offer/booking/confirmation-info")
     public BookingConfirmationInfo getOfferBasicInfo(@RequestParam Integer offerId) {
         return mealService.getOfferBasicInfo(offerId);
     }
-
     @GetMapping("/offers/last-3")
     public List<LatestOffer> getLastThreeOffers() {
         return mealService.getLastThreeOffers();
