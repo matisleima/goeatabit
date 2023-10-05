@@ -39,7 +39,7 @@ public class Offer {
 
     @NotNull
     @Column(name = "date", nullable = false)
-    private LocalDate date;
+    private String date;
 
     @NotNull
     @Column(name = "price", nullable = false, precision = 4, scale = 2)

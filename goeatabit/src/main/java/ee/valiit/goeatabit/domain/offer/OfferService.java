@@ -11,20 +11,20 @@ import java.util.List;
 
 @Service
 public class OfferService {
-    public static final String DATE_TO_INCLUCE_ALL_DATES = "1984-05-04";
     @Resource
     private OfferRepository offerRepository;
 
     public List<Offer> getFilteredOffers(FilteredOfferRequest request) {
-        LocalDate localDate;
-
-        if (hasDate(request)) {
-            localDate = DateConverter.stringToLocalDate(request.getDate());
-        } else {
-            localDate = DateConverter.stringToLocalDate(DATE_TO_INCLUCE_ALL_DATES);
-        }
-        return offerRepository.getFilteredOffersBy(request.getFoodGroupId(), request.getDistrictId(), request.getPriceLimit(), Status.ACTIVE.getLetter(), request.getDescription(), localDate, request.getUserId());
-
+        String today = LocalDate.now().toString();
+        Integer result = today.compareTo(request.getDate());
+        return offerRepository.getFilteredOffersBy(request.getFoodGroupId(),
+                request.getDistrictId(),
+                request.getPriceLimit(),
+                Status.ACTIVE.getLetter(),
+                request.getDescription(),
+                request.getDate(),
+                request.getUserId(),
+                result);
     }
 
     public List<Offer> getLastThreeActiveOffers() {
@@ -32,17 +32,13 @@ public class OfferService {
     }
 
     public List<Offer> getNextTodaysThreeActiveOffersBy(Integer districtId) {
-        return offerRepository.getNextTodaysThreeOffersBy(Status.ACTIVE.getLetter(), districtId);
+        String today = LocalDate.now().toString();
+        return offerRepository.getNextTodaysThreeOffersBy(Status.ACTIVE.getLetter(), districtId, today);
     }
 
     public void saveOffer(Offer offer) {
         offerRepository.save(offer);
     }
-
-    private static boolean hasDate(FilteredOfferRequest request) {
-        return !request.getDate().isBlank();
-    }
-
 
     public Offer getOfferBy(Integer offerId) {
         return offerRepository.getReferenceById(offerId);
